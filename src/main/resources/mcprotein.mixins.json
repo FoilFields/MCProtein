@@ -4,6 +4,7 @@
   "package": "foilfields.mcprotein.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "Cauldron"
   ],
   "client": [
   ],
