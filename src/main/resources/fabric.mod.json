@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "mcprotein",
+  "version": "${version}",
+  "name": "MCProtein",
+  "description": "Get swole",
+  "authors": [
+    "Woukie"
+  ],
+  "contact": {
+    "website": "foilfields.com"
+  },
+  "license": "MIT",
+  "icon": "assets/mcprotein/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "foilfields.mcprotein.client.MCProteinClient"
+    ],
+    "main": [
+      "foilfields.mcprotein.MCProtein"
+    ]
+  },
+  "mixins": [
+    "mcprotein.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.13",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}
