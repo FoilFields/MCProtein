@@ -4,11 +4,9 @@
   "package": "foilfields.mcprotein.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AbstractCauldronBlockMixin",
     "Cauldron"
   ],
   "client": [
-    "Cauldron"
   ],
   "injectors": {
     "defaultRequire": 1
