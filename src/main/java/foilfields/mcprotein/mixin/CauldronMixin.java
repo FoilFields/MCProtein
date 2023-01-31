@@ -30,15 +30,17 @@ public abstract class CauldronMixin {
     //on use cauldron
     @Inject(at=@At("HEAD"), method = "onUse(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;")
     protected void onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir){
-        if(!player.getStackInHand(hand).isEmpty() && !isFull(state)){
-            if(player.getStackInHand(hand).getItem() ==  MCProtein.FISH_OIL_BUCKET){
+        if (!player.getStackInHand(hand).isEmpty() && !isFull(state)){
+            if (player.getStackInHand(hand).getItem() ==  MCProtein.FISH_OIL_BUCKET){
                 player.getStackInHand(hand).decrement(1);
                 ItemStack newBucket = new ItemStack(Items.BUCKET);
                 player.setStackInHand(hand, newBucket);
                 Block.replace(state, MCProtein.FISH_OIL_CAULDRON.getDefaultState(), world, pos, 0);
-            }else if(player.getStackInHand(hand).getItem() == Items.SALMON){
+
+            } else if (player.getStackInHand(hand).getItem() == Items.SALMON){
                 player.getStackInHand(hand).decrement(1);
                 Block.replace(state, MCProtein.FISH_OIL_CAULDRON.getDefaultState(), world, pos, 0);
+
             }
         }
     }

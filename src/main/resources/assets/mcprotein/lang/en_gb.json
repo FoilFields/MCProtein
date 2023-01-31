@@ -1,5 +1,6 @@
 {
   "itemGroup.mcprotein.mcprotein":  "MCProtein",
   "item.mcprotein.fish_oil_bucket": "Bucket of Fish Oil",
-  "item.mcprotein.powdered_milk": "Powdered Milk"
+  "item.mcprotein.powdered_milk": "Powdered Milk",
+  "item.mcprotein.milk_bottle": "Milk Bottle"
 }

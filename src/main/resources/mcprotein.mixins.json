@@ -4,9 +4,10 @@
   "package": "foilfields.mcprotein.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "CauldronBehaviourMixin",
+    "CauldronMixin",
     "EntityDataSaverMixin",
-    "PlayerEntityMixin",
-    "CauldronMixin"
+    "PlayerEntityMixin"
   ],
   "server": [
     "PlayerEntityMixin"
