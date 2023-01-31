@@ -1,6 +1,7 @@
 package foilfields.mcprotein;
 
 import foilfields.mcprotein.Blocks.CustomCauldronBlock;
+import foilfields.mcprotein.Blocks.CustomLeveledCauldronBlock;
 import foilfields.mcprotein.events.ClientPlayConnectionJoin;
 import foilfields.mcprotein.fluid.FishOilFluid;
 import foilfields.mcprotein.networking.SwoleMessages;
@@ -19,6 +20,8 @@ import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.Map;
+
 import static net.minecraft.block.Blocks.CAULDRON;
 
 public class MCProtein implements ModInitializer {
@@ -27,9 +30,12 @@ public class MCProtein implements ModInitializer {
     public static Item FISH_OIL_BUCKET, POWDERED_MILK;
     public static Block FISH_OIL, FISH_BLOCK;
     public static CustomCauldronBlock FISH_OIL_CAULDRON;
+    public static CustomLeveledCauldronBlock LEVELED_MILK_CAULDRON;
     public static String MOD_ID = "mcprotein";
     //custom item group
     final ItemGroup MCPROTEIN = FabricItemGroupBuilder.create(new Identifier(MOD_ID, "mcprotein")).icon(() -> new ItemStack(FISH_OIL_BUCKET)).build();
+
+    public static final Map<Item, CauldronBehavior> MILK_CAULDRON_BEHAVIOR = CauldronBehavior.createMap();
 
     @Override
     public void onInitialize() {
@@ -44,8 +50,10 @@ public class MCProtein implements ModInitializer {
 
         POWDERED_MILK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "powdered_milk"), new Item(new FabricItemSettings().group(MCPROTEIN)));
 
-        FISH_OIL_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_oil_cauldron"), new CustomCauldronBlock(AbstractBlock.Settings.of(Material.METAL, MapColor.STONE_GRAY).requiresTool().strength(2.0F).nonOpaque()){});
+        FISH_OIL_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_oil_cauldron"), new CustomCauldronBlock(LeveledCauldronBlock.Settings.of(Material.METAL, MapColor.STONE_GRAY).requiresTool().strength(2.0F).nonOpaque()){});
         FISH_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_block"), new Block(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4f)));
+
+        LEVELED_MILK_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "leveled_milk_cauldron"), new CustomLeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), CustomLeveledCauldronBlock.RAIN_PREDICATE, CustomLeveledCauldronBlock.WATER_CAULDRON_BEHAVIOR));
 
         SwoleMessages.RegisterS2CPackets();
 
