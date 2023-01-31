@@ -35,18 +35,15 @@ public interface CauldronBehaviourMixin {
         behavior.put(Items.MILK_BUCKET, MCProtein.FILL_WITH_MILK);
     }
 
-    @Inject(at = @At("TAIL"), method = "Lnet/minecraft/block/cauldron/CauldronBehavior;registerBehavior()V")
+    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/block/cauldron/CauldronBehavior;registerBehavior()V")
     private static void registerBehavior(CallbackInfo ci) {
-        EMPTY_CAULDRON_BEHAVIOR.put(Items.POTION, (state, world, pos, player, hand, stack) -> {
-            if (PotionUtil.getPotion(stack) != Potions.WATER) {
-                return ActionResult.PASS;
-            }
+        EMPTY_CAULDRON_BEHAVIOR.put(MCProtein.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
                 Item item = stack.getItem();
                 player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
                 player.incrementStat(Stats.USE_CAULDRON);
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
-                world.setBlockState(pos, Blocks.WATER_CAULDRON.getDefaultState());
+                world.setBlockState(pos, MCProtein.MILK_CAULDRON.getDefaultState());
                 world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
             }
@@ -63,7 +60,7 @@ public interface CauldronBehaviourMixin {
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.GLASS_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
                 Item item = stack.getItem();
-                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.SWIFTNESS)));
+                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(MCProtein.MILK_BOTTLE)));
                 player.incrementStat(Stats.USE_CAULDRON);
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
                 LeveledCauldronBlock.decrementFluidLevel(state, world, pos);
@@ -73,8 +70,8 @@ public interface CauldronBehaviourMixin {
             return ActionResult.success(world.isClient);
         });
 
-        MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.POTION, (state, world, pos, player, hand, stack) -> {
-            if (state.get(LeveledCauldronBlock.LEVEL) == 3 || PotionUtil.getPotion(stack) != Potions.SWIFTNESS) {
+        MCProtein.MILK_CAULDRON_BEHAVIOUR.put(MCProtein.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
+            if (state.get(LeveledCauldronBlock.LEVEL) == 3) {
                 return ActionResult.PASS;
             }
             if (!world.isClient) {

@@ -37,15 +37,15 @@ public class MCProtein implements ModInitializer {
 
     public static final Block FISH_OIL = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_oil"), new FluidBlock(STILL_FISH_OIL, FabricBlockSettings.copy(Blocks.WATER)){});
     public static final Block FISH_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_block"), new Block(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4f)));
-    public static final Block MILK_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "milk_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, CauldronBehavior.WATER_CAULDRON_BEHAVIOR));
 
     public static final CustomCauldronBlock FISH_OIL_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_oil_cauldron"), new CustomCauldronBlock(net.minecraft.block.LeveledCauldronBlock.Settings.of(Material.METAL, MapColor.STONE_GRAY).requiresTool().strength(2.0F).nonOpaque()){});
 
 
 //    Default fill behaviour for filling a cauldron with water
 //    public static net.minecraft.block.cauldron.CauldronBehavior FILL_WITH_WATER = (state, world, pos, player, hand, stack) -> net.minecraft.block.cauldron.CauldronBehavior.fillCauldron(world, pos, player, hand, stack, (BlockState) Blocks.WATER_CAULDRON.getDefaultState().with(net.minecraft.block.LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
-    public static final CauldronBehavior FILL_WITH_MILK = (state, world, pos, player, hand, stack) -> net.minecraft.block.cauldron.CauldronBehavior.fillCauldron(world, pos, player, hand, stack, (BlockState) MILK_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
     public static final Map<Item, CauldronBehavior> MILK_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
+    public static final Block MILK_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "milk_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, MILK_CAULDRON_BEHAVIOUR));
+    public static final CauldronBehavior FILL_WITH_MILK = (state, world, pos, player, hand, stack) -> net.minecraft.block.cauldron.CauldronBehavior.fillCauldron(world, pos, player, hand, stack, (BlockState) MILK_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
 
     @Override
     public void onInitialize() {
