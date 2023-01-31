@@ -33,6 +33,7 @@ public interface CauldronBehaviourMixin {
     @Inject(at = @At("HEAD"), method = "registerBucketBehavior(Ljava/util/Map;)V")
     private static void registerBucketBehavior(Map<Item, CauldronBehavior> behavior, CallbackInfo ci) {
         behavior.put(Items.MILK_BUCKET, MCProtein.FILL_WITH_MILK);
+        behavior.put(MCProtein.FISH_OIL_BUCKET, MCProtein.FILL_WITH_FISH_OIL);
     }
 
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/block/cauldron/CauldronBehavior;registerBehavior()V")
@@ -50,12 +51,34 @@ public interface CauldronBehaviourMixin {
             return ActionResult.success(world.isClient);
         });
 
+        EMPTY_CAULDRON_BEHAVIOR.put(MCProtein.FISH_OIL_BOTTLE, (state, world, pos, player, hand, stack) -> {
+            if (!world.isClient) {
+                Item item = stack.getItem();
+                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
+                player.incrementStat(Stats.USE_CAULDRON);
+                player.incrementStat(Stats.USED.getOrCreateStat(item));
+                world.setBlockState(pos, MCProtein.FISH_OIL_CAULDRON.getDefaultState());
+                world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
+            }
+            return ActionResult.success(world.isClient);
+        });
+
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.MILK_BUCKET, MCProtein.FILL_WITH_MILK);
+        MCProtein.MILK_CAULDRON_BEHAVIOUR.put(MCProtein.FISH_OIL_BUCKET, MCProtein.FILL_WITH_FISH_OIL);
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.LAVA_BUCKET, FILL_WITH_LAVA);
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.WATER_BUCKET, FILL_WITH_WATER);
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.POWDER_SNOW_BUCKET, FILL_WITH_POWDER_SNOW);
 
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.MILK_BUCKET, MCProtein.FILL_WITH_MILK);
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(MCProtein.FISH_OIL_BUCKET, MCProtein.FILL_WITH_FISH_OIL);
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.LAVA_BUCKET, FILL_WITH_LAVA);
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.WATER_BUCKET, FILL_WITH_WATER);
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.POWDER_SNOW_BUCKET, FILL_WITH_POWDER_SNOW);
+
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(Items.MILK_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
+
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(MCProtein.FISH_OIL_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
 
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(Items.GLASS_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
@@ -70,7 +93,35 @@ public interface CauldronBehaviourMixin {
             return ActionResult.success(world.isClient);
         });
 
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.GLASS_BOTTLE, (state, world, pos, player, hand, stack) -> {
+            if (!world.isClient) {
+                Item item = stack.getItem();
+                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(MCProtein.FISH_OIL_BOTTLE)));
+                player.incrementStat(Stats.USE_CAULDRON);
+                player.incrementStat(Stats.USED.getOrCreateStat(item));
+                LeveledCauldronBlock.decrementFluidLevel(state, world, pos);
+                world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                world.emitGameEvent(null, GameEvent.FLUID_PICKUP, pos);
+            }
+            return ActionResult.success(world.isClient);
+        });
+
         MCProtein.MILK_CAULDRON_BEHAVIOUR.put(MCProtein.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
+            if (state.get(LeveledCauldronBlock.LEVEL) == 3) {
+                return ActionResult.PASS;
+            }
+            if (!world.isClient) {
+                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
+                player.incrementStat(Stats.USE_CAULDRON);
+                player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
+                world.setBlockState(pos, (BlockState)state.cycle(LeveledCauldronBlock.LEVEL));
+                world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
+            }
+            return ActionResult.success(world.isClient);
+        });
+
+        MCProtein.FISH_OIL_CAULDRON_BEHAVIOUR.put(MCProtein.FISH_OIL_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (state.get(LeveledCauldronBlock.LEVEL) == 3) {
                 return ActionResult.PASS;
             }
