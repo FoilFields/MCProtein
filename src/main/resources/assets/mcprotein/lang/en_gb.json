@@ -2,6 +2,7 @@
   "itemGroup.mcprotein.mcprotein":  "MCProtein",
   "item.mcprotein.fish_oil_bucket": "Bucket of Fish Oil",
   "item.mcprotein.fish_oil_bottle": "Bottle of Fish Oil",
-  "item.mcprotein.powdered_milk_bucket": "Powdered Milk Bucket",
+  "item.mcprotein.whey_bucket": "Whey Bucket",
+  "item.mcprotein.whey_bottle": "Whey Bottle",
   "item.mcprotein.milk_bottle": "Milk Bottle"
 }
