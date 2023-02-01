@@ -1,9 +1,9 @@
 package foilfields.mcprotein.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -11,6 +11,11 @@ import net.minecraft.util.shape.VoxelShapes;
 public class CurdBlock extends Block {
     public CurdBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    public BlockSoundGroup getSoundGroup(BlockState state) {
+        return BlockSoundGroup.SLIME;
     }
 
     @Override
