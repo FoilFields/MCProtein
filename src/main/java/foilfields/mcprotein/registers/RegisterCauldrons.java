@@ -40,22 +40,22 @@ public class RegisterCauldrons {
     // MILK
     // moved to its own class due to additional age behaviour
     public static final Map<Item, CauldronBehavior> MILK_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
-    public static final Block MILK_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "milk_cauldron"), new MilkCauldronBlock(AbstractBlock.Settings.copy(CAULDRON).requiresTool().strength(6.0f), LeveledCauldronBlock.RAIN_PREDICATE, MILK_CAULDRON_BEHAVIOUR));
+    public static final Block MILK_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "milk_cauldron"), new MilkCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, MILK_CAULDRON_BEHAVIOUR));
     public static final CauldronBehavior FILL_WITH_MILK = (state, world, pos, player, hand, stack) -> CauldronBehavior.fillCauldron(world, pos, player, hand, stack, MILK_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
 
     // FISH
     // Also uses its own class like milk (also has no bucket behaviour)
     public static final Map<Item, CauldronBehavior> FISH_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
-    public static final Block FISH_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "fish_cauldron"), new FishCauldronBlock(AbstractBlock.Settings.copy(CAULDRON).requiresTool().strength(2), LeveledCauldronBlock.RAIN_PREDICATE, FISH_CAULDRON_BEHAVIOUR));
+    public static final Block FISH_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "fish_cauldron"), new FishCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, FISH_CAULDRON_BEHAVIOUR));
 
     // FISH OIL
     public static final Map<Item, CauldronBehavior> FISH_OIL_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
-    public static final Block FISH_OIL_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "fish_oil_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON).requiresTool().strength(2), LeveledCauldronBlock.RAIN_PREDICATE, FISH_OIL_CAULDRON_BEHAVIOUR));
+    public static final Block FISH_OIL_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "fish_oil_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, FISH_OIL_CAULDRON_BEHAVIOUR));
     public static final CauldronBehavior FILL_WITH_FISH_OIL = (state, world, pos, player, hand, stack) -> CauldronBehavior.fillCauldron(world, pos, player, hand, stack, FISH_OIL_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
 
     // WHEY
     public static final Map<Item, CauldronBehavior> WHEY_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
-    public static final Block WHEY_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "whey_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON).requiresTool().strength(2), LeveledCauldronBlock.RAIN_PREDICATE, WHEY_CAULDRON_BEHAVIOUR));
+    public static final Block WHEY_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "whey_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, WHEY_CAULDRON_BEHAVIOUR));
     public static final CauldronBehavior FILL_WITH_WHEY = (state, world, pos, player, hand, stack) -> CauldronBehavior.fillCauldron(world, pos, player, hand, stack, WHEY_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
 
     public static void registerBucketBehavior(Map<Item, CauldronBehavior> behavior) {
