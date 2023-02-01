@@ -44,7 +44,7 @@ public class RegisterCauldrons {
     public static final CauldronBehavior FILL_WITH_MILK = (state, world, pos, player, hand, stack) -> CauldronBehavior.fillCauldron(world, pos, player, hand, stack, MILK_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
 
     // FISH
-    // Also uses its own class like milk
+    // Also uses its own class like milk (also has no bucket behaviour)
     public static final Map<Item, CauldronBehavior> FISH_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
     public static final Block FISH_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "fish_cauldron"), new FishCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, FISH_CAULDRON_BEHAVIOUR));
 
