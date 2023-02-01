@@ -1,5 +1,6 @@
 package foilfields.mcprotein;
 
+import foilfields.mcprotein.block.FishCauldronBlock;
 import foilfields.mcprotein.block.MilkCauldronBlock;
 import foilfields.mcprotein.events.ClientPlayConnectionJoin;
 import foilfields.mcprotein.items.MilkBottleItem;
@@ -42,6 +43,7 @@ public class MCProtein implements ModInitializer {
 
         RegisterCauldrons.register();
         MilkCauldronBlock.register();
+        FishCauldronBlock.register();
 
         SwoleMessages.RegisterS2CPackets();
         ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionJoin());

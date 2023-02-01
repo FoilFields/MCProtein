@@ -1,6 +1,7 @@
 package foilfields.mcprotein.registers;
 
 import foilfields.mcprotein.MCProtein;
+import foilfields.mcprotein.block.FishCauldronBlock;
 import foilfields.mcprotein.block.MilkCauldronBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -41,6 +42,11 @@ public class RegisterCauldrons {
     public static final Map<Item, CauldronBehavior> MILK_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
     public static final Block MILK_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "milk_cauldron"), new MilkCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, MILK_CAULDRON_BEHAVIOUR));
     public static final CauldronBehavior FILL_WITH_MILK = (state, world, pos, player, hand, stack) -> CauldronBehavior.fillCauldron(world, pos, player, hand, stack, MILK_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
+
+    // FISH
+    // Also uses its own class like milk
+    public static final Map<Item, CauldronBehavior> FISH_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
+    public static final Block FISH_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "fish_cauldron"), new FishCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, FISH_CAULDRON_BEHAVIOUR));
 
     // FISH OIL
     public static final Map<Item, CauldronBehavior> FISH_OIL_CAULDRON_BEHAVIOUR = CauldronBehavior.createMap();
