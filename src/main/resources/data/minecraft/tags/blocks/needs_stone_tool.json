@@ -1,9 +1,5 @@
 {
   "replace": false,
   "values": [
-    "mcprotein.fish_oil_cauldron",
-    "mcprotein.milk_cauldron",
-    "mcprotein.whey_cauldron",
-    "mcprotein.fish_cauldron"
   ]
 }
