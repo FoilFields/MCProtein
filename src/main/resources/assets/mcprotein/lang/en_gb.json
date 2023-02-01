@@ -1,10 +1,12 @@
 {
   "itemGroup.mcprotein.mcprotein":  "MCProtein",
-  "item.mcprotein.fish_oil_bucket": "Fish Oil Bucket",
-  "item.mcprotein.fish_oil_bottle": "Fish Oil Bottle",
+  "item.mcprotein.fish_oil_bucket": "Bucket of Fish Oil",
+  "item.mcprotein.fish_oil_bottle": "Bottle of Fish Oil",
   "item.mcprotein.whey_bucket": "Whey Bucket",
   "item.mcprotein.whey_bottle": "Whey Bottle",
+  "item.mcprotein.whey_protein_powder": "Whey Protein Powder",
   "item.mcprotein.milk_bottle": "Milk Bottle",
   "item.mcprotein.curd": "Curd",
   "item.mcprotein.cheese": "Cheese"
+
 }
