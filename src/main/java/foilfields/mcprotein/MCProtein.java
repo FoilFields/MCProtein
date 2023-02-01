@@ -3,6 +3,7 @@ package foilfields.mcprotein;
 import foilfields.mcprotein.block.FishCauldronBlock;
 import foilfields.mcprotein.block.MilkCauldronBlock;
 import foilfields.mcprotein.events.ClientPlayConnectionJoin;
+import foilfields.mcprotein.items.FishOilBottleItem;
 import foilfields.mcprotein.items.MilkBottleItem;
 import foilfields.mcprotein.networking.SwoleMessages;
 import foilfields.mcprotein.registers.RegisterCauldrons;
@@ -33,7 +34,7 @@ public class MCProtein implements ModInitializer {
     //public static final Item POWDERED_MILK_BUCKET = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "powdered_milk_bucket"), new Item(new FabricItemSettings().group(MOD_ITEM_GROUP)));
     public static final Item MILK_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "milk_bottle"), (Item)new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(ItemGroup.FOOD).maxCount(16)));
     public static final Item WHEY_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "whey_bottle"), (Item)new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(ItemGroup.FOOD).maxCount(16)));
-    public static final Item FISH_OIL_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "fish_oil_bottle"), (Item)new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(ItemGroup.FOOD).maxCount(16)));
+    public static final Item FISH_OIL_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "fish_oil_bottle"), (Item)new FishOilBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(ItemGroup.FOOD).maxCount(16)));
 
     //public static final Block FISH_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_block"), new Block(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4f)));
     public static final Block CURD_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "curd_block"), new CarpetBlock(FabricBlockSettings.of(Material.CARPET)));
