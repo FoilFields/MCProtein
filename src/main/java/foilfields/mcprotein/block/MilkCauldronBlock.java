@@ -2,12 +2,14 @@ package foilfields.mcprotein.block;
 
 import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.registers.RegisterCauldrons;
+import foilfields.mcprotein.util.BlockCheck;
 import net.minecraft.block.*;
 import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -112,11 +114,18 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = state.get(AGE);
         int level = state.get(LEVEL);
-        if (age < 7 && random.nextInt(0, 3) == 0 && level == 3) {
+
+        BlockPos blockBelow = new BlockPos(pos).add(0, -1, 0);
+        if (age < 7 && (BlockCheck.isHeatSource(world.getBlockState(blockBelow)) || random.nextInt(0, 3) == 0 && level == 3)) {
+            world.spawnParticles(ParticleTypes.POOF, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 10, 0.2, 0, 0.2, 0);
+            world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
             world.setBlockState(pos, this.withAge(age + 1).with(LEVEL, level), Block.NOTIFY_LISTENERS);
         }
 
         if (age >= 7) {
+            world.spawnParticles(ParticleTypes.POOF, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 10, 0.2, 0, 0.2, 0);
+            world.playSound(null, pos, SoundEvents.BLOCK_HONEY_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
+
             world.setBlockState(pos, RegisterCauldrons.WHEY_CAULDRON.getDefaultState());
             BlockPos blockAbove = new BlockPos(pos).add(0, 1, 0);
             if (world.getBlockState(blockAbove).isAir()) {
