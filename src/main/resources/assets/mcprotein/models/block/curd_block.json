@@ -1,19 +1,20 @@
 {
-  "parent": "block/thin_block",
-  "textures": {
-    "particle": "#curd_block"
-  },
-  "elements": [
-    {   "from": [ 0, 0, 0 ],
-      "to": [ 16, 1, 16 ],
-      "faces": {
-        "down":  { "uv": [ 0,  0, 16, 16 ], "texture": "#curd_block", "cullface": "down" },
-        "up":    { "uv": [ 0,  0, 16, 16 ], "texture": "#curd_block" },
-        "north": { "uv": [ 0, 15, 16, 16 ], "texture": "#curd_block", "cullface": "north" },
-        "south": { "uv": [ 0, 15, 16, 16 ], "texture": "#curd_block", "cullface": "south" },
-        "west":  { "uv": [ 0, 15, 16, 16 ], "texture": "#curd_block", "cullface": "west" },
-        "east":  { "uv": [ 0, 15, 16, 16 ], "texture": "#curd_block", "cullface": "east" }
-      }
-    }
-  ]
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "mcprotein:block/curd_block"
+	},
+	"elements": [
+		{
+			"from": [0, 0.01, 0],
+			"to": [16, 0.01, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "rotation": 180, "texture": "#1", "cullface": "north"},
+				"east": {"uv": [15, 0, 16, 16], "rotation": 90, "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [0, 0, 1, 16], "rotation": 270, "texture": "#1", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#1", "cullface": "down"}
+			}
+		}
+	]
 }
