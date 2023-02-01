@@ -145,7 +145,7 @@ public class FishCauldronBlock extends LeveledCauldronBlock {
         int level = state.get(LEVEL);
 
         BlockPos blockBelow = new BlockPos(pos).add(0, -1, 0);
-        if (age < 7 && (BlockCheck.isHeatSource(world.getBlockState(blockBelow)) || random.nextInt(0, 3) == 0 && level == 3)) {
+        if (age < 7 && (BlockCheck.isHeatSource(world.getBlockState(blockBelow)) || random.nextInt(0, 3) == 0) && level == 3) {
             world.spawnParticles(ParticleTypes.POOF, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 10, 0.2, 0, 0.2, 0);
             world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
             world.setBlockState(pos, this.withAge(age + 1).with(LEVEL, level), Block.NOTIFY_LISTENERS);
