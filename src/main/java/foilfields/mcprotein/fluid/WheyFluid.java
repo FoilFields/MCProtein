@@ -9,28 +9,28 @@ import net.minecraft.item.Item;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 
-public abstract class FishOilFluid extends AbstractFluid {
+public abstract class WheyFluid extends AbstractFluid {
     @Override
     public Fluid getStill() {
-        return RegisterFluids.STILL_FISH_OIL;
+        return RegisterFluids.STILL_WHEY;
     }
 
     @Override
     public Fluid getFlowing() {
-        return RegisterFluids.FLOWING_FISH_OIL;
+        return RegisterFluids.FLOWING_WHEY;
     }
 
     @Override
     public Item getBucketItem() {
-        return MCProtein.FISH_OIL_BUCKET;
+        return MCProtein.WHEY_BUCKET;
     }
 
     @Override
     protected BlockState toBlockState(FluidState fluidState) {
-        return RegisterFluids.FISH_OIL.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(fluidState));
+        return RegisterFluids.WHEY.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(fluidState));
     }
 
-    public static class Flowing extends FishOilFluid {
+    public static class Flowing extends WheyFluid {
         @Override
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
             super.appendProperties(builder);
@@ -48,7 +48,7 @@ public abstract class FishOilFluid extends AbstractFluid {
         }
     }
 
-    public static class Still extends FishOilFluid {
+    public static class Still extends WheyFluid {
         @Override
         public int getLevel(FluidState fluidState) {
             return 8;
