@@ -6,11 +6,8 @@ import foilfields.mcprotein.util.SwoleData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.stat.Stat;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,15 +23,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Shadow public abstract float getAttackCooldownProgress(float baseTime);
 
+    @Shadow protected boolean isSubmergedInWater;
+
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V")
     public void tickMovement(CallbackInfo ci) {
-        if (!world.isClient && this.isSwimming()) {
+        if (!world.isClient && isSubmergedInWater()) {
             EntityDataSaver entityDataSaver = (EntityDataSaver) this;
-            SwoleData.addStat(entityDataSaver, 1, "swim", SwoleMessages.SWIM_SYNC_ID);
+            if (Math.random() < 0.05) SwoleData.addStat(entityDataSaver, 20, "swim", SwoleMessages.SWIM_SYNC_ID);
         }
     }
 
@@ -44,7 +43,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         float amount = args.get(1);
 
         EntityDataSaver entityDataSaver = (EntityDataSaver) this;
-        NbtCompound nbt = entityDataSaver.getPersistantData();
+        NbtCompound nbt = entityDataSaver.getPersistentData();
         float damageMultiplier = (((float)nbt.getInt("attack")) / 900.0f + 1.0f);
         args.set(1, amount * damageMultiplier);
     }

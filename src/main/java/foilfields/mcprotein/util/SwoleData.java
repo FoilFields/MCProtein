@@ -10,13 +10,15 @@ import net.minecraft.util.Identifier;
 
 public class SwoleData {
     public static int addStat(EntityDataSaver player, int value, String stat, Identifier channelName) {
-        NbtCompound nbt = player.getPersistantData();
+        NbtCompound nbt = player.getPersistentData();
 
         int originalData = nbt.getInt(stat);
         int addedData = value < 0.0 ? value : (int)((100.0f / (100.0f + originalData)) * value);
         int newData = Math.max(0, originalData + addedData);
 
         nbt.putInt(stat, newData);
+
+//        if (value > 0.0) ((ServerPlayerEntity) player).sendMessage(Text.of(stat + " " + newData), true);
 
         syncStat(newData, (ServerPlayerEntity) player, channelName);
 

@@ -15,7 +15,7 @@ public abstract class EntityDataSaverMixin implements EntityDataSaver {
     private NbtCompound persistantData;
 
     @Override
-    public NbtCompound getPersistantData() {
+    public NbtCompound getPersistentData() {
         if (this.persistantData == null) {
             this.persistantData = new NbtCompound();
         }

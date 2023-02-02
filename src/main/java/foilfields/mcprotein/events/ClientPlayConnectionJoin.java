@@ -12,5 +12,6 @@ public class ClientPlayConnectionJoin implements ClientPlayConnectionEvents.Join
     @Override
     public void onPlayReady(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client) {
         ClientPlayNetworking.send(SwoleMessages.ATTACK_SYNC_ID, PacketByteBufs.create());
+        ClientPlayNetworking.send(SwoleMessages.SWIM_SYNC_ID, PacketByteBufs.create());
     }
 }

@@ -6,9 +6,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 
-public class AttackSyncDataS2CPacket {
+public class SwimSyncDataS2CPacket {
     public static void Receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         int level = buf.readInt();
-        ((EntityDataSaver) client.player).getPersistentData().putInt("attack", level);
+        ((EntityDataSaver) client.player).getPersistentData().putInt("swim", level);
     }
 }
