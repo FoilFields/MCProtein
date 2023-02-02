@@ -1,26 +1,31 @@
 package foilfields.mcprotein.util;
 
-import foilfields.mcprotein.networking.SwoleMessages;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 public class SwoleData {
-    public static int addAttack(EntityDataSaver player, int value) {
+    public static int addStat(EntityDataSaver player, int value, String stat, Identifier channelName) {
         NbtCompound nbt = player.getPersistantData();
-        int attack = nbt.getInt("attack") + value;
-        nbt.putInt("attack", attack);
 
-        syncAttack(attack, (ServerPlayerEntity) player);
+        int originalData = nbt.getInt(stat);
+        int addedData = value < 0.0 ? value : (int)((100.0f / (100.0f + originalData)) * value);
+        int newData = Math.max(0, originalData + addedData);
 
-        return attack;
+        nbt.putInt(stat, newData);
+
+        syncStat(newData, (ServerPlayerEntity) player, channelName);
+
+        return newData;
     }
 
-    public static void syncAttack(int level, ServerPlayerEntity player) {
+    public static void syncStat(int level, ServerPlayerEntity player, Identifier channelName) {
         PacketByteBuf buf = PacketByteBufs.create();
         buf.writeInt(level);
-        ServerPlayNetworking.send(player, SwoleMessages.ATTACK_SYNC_ID, buf);
+        ServerPlayNetworking.send(player, channelName, buf);
     }
 }

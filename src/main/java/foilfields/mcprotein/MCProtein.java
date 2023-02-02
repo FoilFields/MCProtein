@@ -8,18 +8,26 @@ import foilfields.mcprotein.items.FishOilBottleItem;
 import foilfields.mcprotein.items.MilkBottleItem;
 import foilfields.mcprotein.networking.SwoleMessages;
 import foilfields.mcprotein.registers.RegisterCauldrons;
+import foilfields.mcprotein.util.EntityDataSaver;
+import foilfields.mcprotein.util.SwoleData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.server.ServerTickCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 
+import static foilfields.mcprotein.networking.SwoleMessages.ATTACK_SYNC_ID;
 import static foilfields.mcprotein.registers.RegisterFluids.STILL_FISH_OIL;
 import static foilfields.mcprotein.registers.RegisterFluids.STILL_WHEY;
 
@@ -50,6 +58,15 @@ public class MCProtein implements ModInitializer {
         RegisterCauldrons.register();
         MilkCauldronBlock.register();
         FishCauldronBlock.register();
+
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            server.getWorlds().forEach(serverWorld -> {
+                serverWorld.getPlayers().forEach(player -> {
+                    if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "attack", ATTACK_SYNC_ID);
+                    if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "swim", ATTACK_SYNC_ID);
+                });
+            });
+        });
 
         SwoleMessages.RegisterS2CPackets();
         ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionJoin());
