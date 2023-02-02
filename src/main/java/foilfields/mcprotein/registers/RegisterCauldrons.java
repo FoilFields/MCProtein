@@ -67,8 +67,8 @@ public class RegisterCauldrons {
 
     public static void registerModdedBucketBehavior(Map<Item, CauldronBehavior> behavior) {
         behavior.put(Items.MILK_BUCKET, FILL_WITH_MILK);
-        behavior.put(MCProtein.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
-        behavior.put(MCProtein.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
+        behavior.put(RegisterItems.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
+        behavior.put(RegisterItems.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
     }
 
     public static void registerFillWithBottle(Map<Item, CauldronBehavior> fullBehaviour, Item bottleItem, Block cauldron) {
@@ -127,15 +127,15 @@ public class RegisterCauldrons {
         registerBucketBehavior(WHEY_CAULDRON_BEHAVIOUR);
 
         // Right click with bottle to fill cauldron
-        registerFillWithBottle(FISH_OIL_CAULDRON_BEHAVIOUR, MCProtein.FISH_OIL_BOTTLE, FISH_OIL_CAULDRON);
-        registerFillWithBottle(WHEY_CAULDRON_BEHAVIOUR, MCProtein.WHEY_BOTTLE, WHEY_CAULDRON);
+        registerFillWithBottle(FISH_OIL_CAULDRON_BEHAVIOUR, RegisterItems.FISH_OIL_BOTTLE, FISH_OIL_CAULDRON);
+        registerFillWithBottle(WHEY_CAULDRON_BEHAVIOUR, RegisterItems.WHEY_BOTTLE, WHEY_CAULDRON);
 
         // Empty when clicked with bucket
-        FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(MCProtein.FISH_OIL_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
-        WHEY_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(MCProtein.WHEY_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
+        FISH_OIL_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(RegisterItems.FISH_OIL_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
+        WHEY_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(RegisterItems.WHEY_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
 
         // Fill a bottle when used
-        registerFillBottle(FISH_OIL_CAULDRON_BEHAVIOUR, MCProtein.FISH_OIL_BOTTLE);
-        registerFillBottle(WHEY_CAULDRON_BEHAVIOUR, MCProtein.WHEY_BOTTLE);
+        registerFillBottle(FISH_OIL_CAULDRON_BEHAVIOUR, RegisterItems.FISH_OIL_BOTTLE);
+        registerFillBottle(WHEY_CAULDRON_BEHAVIOUR, RegisterItems.WHEY_BOTTLE);
     }
 }

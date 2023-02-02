@@ -2,6 +2,7 @@ package foilfields.mcprotein.fluid;
 
 import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.registers.RegisterFluids;
+import foilfields.mcprotein.registers.RegisterItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -22,7 +23,7 @@ public abstract class WheyFluid extends AbstractFluid {
 
     @Override
     public Item getBucketItem() {
-        return MCProtein.WHEY_BUCKET;
+        return RegisterItems.WHEY_BUCKET;
     }
 
     @Override

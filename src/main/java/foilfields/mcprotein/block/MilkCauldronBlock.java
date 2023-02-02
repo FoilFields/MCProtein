@@ -1,7 +1,9 @@
 package foilfields.mcprotein.block;
 
 import foilfields.mcprotein.MCProtein;
+import foilfields.mcprotein.registers.RegisterBlocks;
 import foilfields.mcprotein.registers.RegisterCauldrons;
+import foilfields.mcprotein.registers.RegisterItems;
 import foilfields.mcprotein.util.BlockCheck;
 import net.minecraft.block.*;
 import net.minecraft.block.cauldron.CauldronBehavior;
@@ -39,11 +41,11 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
 
         MILK_CAULDRON_BEHAVIOUR.put(Items.MILK_BUCKET, FILL_WITH_MILK);
 
-        MILK_CAULDRON_BEHAVIOUR.put(MCProtein.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
-        MILK_CAULDRON_BEHAVIOUR.put(MCProtein.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
+        MILK_CAULDRON_BEHAVIOUR.put(RegisterItems.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
+        MILK_CAULDRON_BEHAVIOUR.put(RegisterItems.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
 
         // Right-clicking an empty cauldron with a bottle
-        EMPTY_CAULDRON_BEHAVIOR.put(MCProtein.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
+        EMPTY_CAULDRON_BEHAVIOR.put(RegisterItems.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
                 Item item = stack.getItem();
                 player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
@@ -57,7 +59,7 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
         });
 
         // Right-clicking a cauldron with a milk bottle
-        MILK_CAULDRON_BEHAVIOUR.put(MCProtein.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
+        MILK_CAULDRON_BEHAVIOUR.put(RegisterItems.MILK_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (state.get(LeveledCauldronBlock.LEVEL) == 3) {
                 return ActionResult.PASS;
             }
@@ -78,7 +80,7 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
         MILK_CAULDRON_BEHAVIOUR.put(Items.GLASS_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
                 Item item = stack.getItem();
-                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(MCProtein.MILK_BOTTLE)));
+                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(RegisterItems.MILK_BOTTLE)));
                 player.incrementStat(Stats.USE_CAULDRON);
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
 
@@ -129,7 +131,7 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
             world.setBlockState(pos, RegisterCauldrons.WHEY_CAULDRON.getDefaultState());
             BlockPos blockAbove = new BlockPos(pos).add(0, 1, 0);
             if (world.getBlockState(blockAbove).isAir()) {
-                world.setBlockState(blockAbove, MCProtein.CURD_BLOCK.getDefaultState());
+                world.setBlockState(blockAbove, RegisterBlocks.CURD_BLOCK.getDefaultState());
             }
         }
 

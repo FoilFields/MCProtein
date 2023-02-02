@@ -19,4 +19,8 @@ public class RegisterFluids {
     public static final FlowableFluid STILL_WHEY = Registry.register(Registry.FLUID, new Identifier(MCProtein.MOD_ID, "whey"), new WheyFluid.Still());;
     public static final FlowableFluid FLOWING_WHEY = Registry.register(Registry.FLUID, new Identifier(MCProtein.MOD_ID, "flowing_whey"), new WheyFluid.Flowing());
     public static final Block WHEY = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "whey"), new FluidBlock(STILL_WHEY, FabricBlockSettings.copy(Blocks.WATER)){});
+
+    public static void register() {
+
+    }
 }

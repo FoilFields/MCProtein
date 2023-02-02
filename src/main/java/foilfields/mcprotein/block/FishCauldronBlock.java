@@ -2,6 +2,7 @@ package foilfields.mcprotein.block;
 
 import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.registers.RegisterCauldrons;
+import foilfields.mcprotein.registers.RegisterItems;
 import foilfields.mcprotein.util.BlockCheck;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -107,8 +108,8 @@ public class FishCauldronBlock extends LeveledCauldronBlock {
 
         FISH_CAULDRON_BEHAVIOUR.put(Items.MILK_BUCKET, FILL_WITH_MILK);
 
-        FISH_CAULDRON_BEHAVIOUR.put(MCProtein.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
-        FISH_CAULDRON_BEHAVIOUR.put(MCProtein.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
+        FISH_CAULDRON_BEHAVIOUR.put(RegisterItems.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
+        FISH_CAULDRON_BEHAVIOUR.put(RegisterItems.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
 
         // Right-clicking a cauldron with a fish
         addFish(Items.TROPICAL_FISH);
