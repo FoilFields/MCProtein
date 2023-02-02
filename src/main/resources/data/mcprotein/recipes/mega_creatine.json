@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mcprotein:creatine"
+    }
+  },
+  "result": {
+    "item": "mcprotein:mega_creatine",
+    "count": 1
+  }
+}

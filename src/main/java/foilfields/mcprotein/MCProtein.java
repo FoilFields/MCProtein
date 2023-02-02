@@ -45,6 +45,8 @@ public class MCProtein implements ModInitializer {
     //public static final Block FISH_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_block"), new Block(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4f)));
     public static final Block CURD_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "curd_block"), new CurdBlock(FabricBlockSettings.of(Material.SNOW_LAYER).mapColor(MapColor.YELLOW).noCollision().collidable(false)));
     public static final Item WHEY_PROTEIN_POWDER = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "whey_protein_powder"), new Item(new Item.Settings().group(MOD_ITEM_GROUP)));
+    public static final Item CREATINE = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "creatine"), new Item(new Item.Settings().group(MOD_ITEM_GROUP)));
+    public static final Item MEGA_CREATINE = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "mega_creatine"), new Item(new Item.Settings().group(MOD_ITEM_GROUP)));
 
     @Override
     public void onInitialize() {
