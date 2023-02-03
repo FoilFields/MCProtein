@@ -9,6 +9,6 @@ import net.minecraft.network.PacketByteBuf;
 public class AttackSyncDataS2CPacket {
     public static void Receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         int level = buf.readInt();
-        ((EntityDataSaver) client.player).getPersistentData().putInt("attack", level);
+        if (client.player != null) ((EntityDataSaver) client.player).getPersistentData().putInt("attack", level);
     }
 }
