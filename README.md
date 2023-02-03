@@ -13,8 +13,6 @@ Get SWOLE, fuel your workout routine with the right supplements and push past yo
     - Jumping
     - Fighting
     - Pain tolerance
-    - Poison tolerance
-    - Food efficiency
 - ### Keep fit to stay fit
     - You have to maintain your physique
 - ### Suplements
