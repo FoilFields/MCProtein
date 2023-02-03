@@ -23,12 +23,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public class WheyGolemSpawner {
     public static void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack, CallbackInfo info) {
-        if (state.getBlock() != Blocks.CARVED_PUMPKIN) {
+        if (state.getBlock() != RegisterBlocks.REINFORCED_CARVED_PUMPKIN) {
             return;
         }
 
         var pattern = BlockPatternBuilder.start().aisle("^", "#", "#")
-                .where('^', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(Blocks.CARVED_PUMPKIN)))
+                .where('^', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(RegisterBlocks.REINFORCED_CARVED_PUMPKIN)))
                 .where('#', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(RegisterBlocks.WHEY_PROTEIN_BLOCK)))
                 .build();
 
