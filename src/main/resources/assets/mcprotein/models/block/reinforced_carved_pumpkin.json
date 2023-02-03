@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "mcprotein:block/reinforced_carved_pumpkin",
+    "side": "mcprotein:block/reinforced_pumpkin_side",
+    "top": "mcprotein:block/reinforced_pumpkin_top"
+  }
+}

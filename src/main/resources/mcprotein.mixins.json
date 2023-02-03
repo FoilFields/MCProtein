@@ -6,7 +6,8 @@
   "mixins": [
     "EntityDataSaverMixin",
     "PlayerEntityMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "BlockMixin"
   ],
   "server": [
     "PlayerEntityMixin"

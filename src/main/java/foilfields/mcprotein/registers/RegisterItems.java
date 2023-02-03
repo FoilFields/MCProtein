@@ -25,6 +25,7 @@ public class RegisterItems {
     public static final Item CHEESE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "cheese"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.BREAD)));
     public static final Item WHEY_PROTEIN_BLOCK = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_protein_block"), new BlockItem(RegisterBlocks.WHEY_PROTEIN_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item CREATINE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "creatine_block"), new BlockItem(RegisterBlocks.CREATINE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item REINFORCED_CARVED_PUMPKIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "reinforced_carved_pumpkin"), new BlockItem(RegisterBlocks.REINFORCED_CARVED_PUMPKIN, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
 
 
     public static void register() {

@@ -4,10 +4,7 @@ import foilfields.mcprotein.block.FishCauldronBlock;
 import foilfields.mcprotein.block.MilkCauldronBlock;
 import foilfields.mcprotein.events.ClientPlayConnectionJoin;
 import foilfields.mcprotein.networking.SwoleMessages;
-import foilfields.mcprotein.registers.RegisterBlocks;
-import foilfields.mcprotein.registers.RegisterCauldrons;
-import foilfields.mcprotein.registers.RegisterFluids;
-import foilfields.mcprotein.registers.RegisterItems;
+import foilfields.mcprotein.registers.*;
 import foilfields.mcprotein.util.EntityDataSaver;
 import foilfields.mcprotein.util.SwoleData;
 import net.fabricmc.api.ModInitializer;
@@ -29,8 +26,6 @@ public class MCProtein implements ModInitializer {
 
     public static ItemGroup MOD_ITEM_GROUP = FabricItemGroupBuilder.create(new Identifier(MOD_ID, "mcprotein")).icon(() -> new ItemStack(Blocks.CAULDRON)).build();
 
-    //public static final Block FISH_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "fish_block"), new Block(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4f)));
-
     @Override
     public void onInitialize() {
         FuelRegistry.INSTANCE.add(RegisterItems.FISH_OIL_BUCKET, 200*32);
@@ -38,6 +33,7 @@ public class MCProtein implements ModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(RegisterBlocks.CURD_BLOCK, RenderLayer.getCutout());
 
         RegisterCauldrons.register();
+        RegisterEntities.register();
         RegisterFluids.register();
         RegisterBlocks.register();
         RegisterItems.register();
