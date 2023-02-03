@@ -14,6 +14,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
 
@@ -24,6 +25,7 @@ public class MCProteinClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.register(RegisterEntities.WHEY_GOLEM, WheyGolemRenderer::new);
+        EntityRendererRegistry.register(RegisterEntities.WHEYBALL, FlyingItemEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(MODEL_WHEY_GOLEM_LAYER, WheyGolemEntityModel::getTexturedModelData);
 

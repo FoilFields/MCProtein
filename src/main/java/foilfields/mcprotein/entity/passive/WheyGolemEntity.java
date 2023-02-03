@@ -1,5 +1,6 @@
 package foilfields.mcprotein.entity.passive;
 
+import foilfields.mcprotein.entity.projectile.thrown.WheyballEntity;
 import foilfields.mcprotein.registers.RegisterItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -24,6 +25,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -34,21 +37,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-public class WheyGolemEntity
-        extends GolemEntity
-        implements RangedAttackMob {
-    private static final TrackedData<Byte> WHEY_GOLEM_FLAGS = DataTracker.registerData(WheyGolemEntity.class, TrackedDataHandlerRegistry.BYTE);
-    private static final byte HAS_PUMPKIN_FLAG = 16;
-    private static final float EYE_HEIGHT = 1.7f;
-
+public class WheyGolemEntity extends GolemEntity implements RangedAttackMob {
     public WheyGolemEntity(EntityType<? extends GolemEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(1, new ProjectileAttackGoal(this, 1.25, 20, 10.0f));
-        this.goalSelector.add(2, new WanderAroundFarGoal(this, 1.0, 1.0000001E-5f));
+        this.goalSelector.add(1, new ProjectileAttackGoal(this, 0.2, 20 * 15, 10.0f));
+        this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.2, 1.0000001E-5f));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 6.0f));
         this.goalSelector.add(4, new LookAroundGoal(this));
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, 10, true, false, entity -> entity instanceof PlayerEntity));
@@ -61,21 +58,16 @@ public class WheyGolemEntity
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-        this.dataTracker.startTracking(WHEY_GOLEM_FLAGS, (byte)16);
     }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putBoolean("Pumpkin", this.hasPumpkin());
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("Pumpkin")) {
-            this.setHasPumpkin(nbt.getBoolean("Pumpkin"));
-        }
     }
 
     @Override
@@ -97,15 +89,15 @@ public class WheyGolemEntity
 
     @Override
     public void attack(LivingEntity target, float pullProgress) {
-        SnowballEntity snowballEntity = new SnowballEntity(this.world, this);
-        double d = target.getEyeY() - (double)1.1f;
-        double e = target.getX() - this.getX();
-        double f = d - snowballEntity.getY();
-        double g = target.getZ() - this.getZ();
-        double h = Math.sqrt(e * e + g * g) * (double)0.2f;
-        snowballEntity.setVelocity(e, f + h, g, 1.6f, 0f);
+        WheyballEntity projectile = new WheyballEntity(this.world, this);
+        double d = target.getEyeY() - (double)1.5f;
+        double f = d - projectile.getY();
+        double deltaX = target.getX() - this.getX();
+        double deltaZ = target.getZ() - this.getZ();
+        double h = Math.sqrt(deltaX * deltaX + deltaZ * deltaZ) * (double)0.2f;
+        projectile.setVelocity(deltaX, f + h, deltaZ, 1.6f, 0f);
         this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0f, 0.4f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
-        this.world.spawnEntity(snowballEntity);
+        this.world.spawnEntity(projectile);
     }
 
     @Override
@@ -118,9 +110,9 @@ public class WheyGolemEntity
         ItemStack itemStack = player2.getStackInHand(hand);
         if (itemStack.isOf(RegisterItems.WHEY_PROTEIN)) {
             this.charge(SoundCategory.PLAYERS);
-            this.emitGameEvent(GameEvent.SHEAR, player2);
+
             if (!this.world.isClient) {
-                itemStack.damage(1, player2, player -> player.sendToolBreakStatus(hand));
+                itemStack.decrement(1);
             }
             return ActionResult.success(this.world.isClient);
         }
@@ -128,23 +120,9 @@ public class WheyGolemEntity
     }
 
     public void charge(SoundCategory shearedSoundCategory) {
-        this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SNOW_GOLEM_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+        this.world.playSoundFromEntity(null, this, SoundEvents.BLOCK_TUFF_BREAK, shearedSoundCategory, 1.0f, 1.0f);
         if (!this.world.isClient()) {
-            this.setHasPumpkin(false);
-            this.dropStack(new ItemStack(Items.CARVED_PUMPKIN), 1.7f);
-        }
-    }
-
-    public boolean hasPumpkin() {
-        return (this.dataTracker.get(WHEY_GOLEM_FLAGS) & 0x10) != 0;
-    }
-
-    public void setHasPumpkin(boolean hasPumpkin) {
-        byte b = this.dataTracker.get(WHEY_GOLEM_FLAGS);
-        if (hasPumpkin) {
-            this.dataTracker.set(WHEY_GOLEM_FLAGS, (byte)(b | 0x10));
-        } else {
-            this.dataTracker.set(WHEY_GOLEM_FLAGS, (byte)(b & 0xFFFFFFEF));
+            // Increase charge stat
         }
     }
 
