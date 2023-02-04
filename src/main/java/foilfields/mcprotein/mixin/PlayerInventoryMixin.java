@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PlayerInventoryMixin {
     @Shadow @Final public PlayerEntity player;
 
-    @Inject(at = @At("RETURN"), method = "Lnet/minecraft/entity/player/PlayerInventory;getBlockBreakingSpeed(Lnet/minecraft/block/BlockState;)F", cancellable = true)
+    @Inject(at = @At("RETURN"), method = "getBlockBreakingSpeed(Lnet/minecraft/block/BlockState;)F", cancellable = true)
     public void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> cir) {
         EntityDataSaver entityDataSaver = (EntityDataSaver) player;
         NbtCompound nbt = entityDataSaver.getPersistentData();

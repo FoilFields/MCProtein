@@ -53,7 +53,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         return value;
     }
 
-    @Inject(at = @At("RETURN"), method = "Lnet/minecraft/entity/player/PlayerEntity;getMovementSpeed()F", cancellable = true)
+    @Inject(at = @At("RETURN"), method = "getMovementSpeed()F", cancellable = true)
     public void getMovementSpeed(CallbackInfoReturnable<Float> cir) {
         EntityDataSaver entityDataSaver = (EntityDataSaver) this;
         NbtCompound nbt = entityDataSaver.getPersistentData();
@@ -62,7 +62,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         cir.setReturnValue(cir.getReturnValueF() * multiplier);
     }
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V")
+    @Inject(at = @At("HEAD"), method = "tickMovement()V")
     public void tickMovement(CallbackInfo ci) {
         if (!world.isClient) {
             EntityDataSaver entityDataSaver = (EntityDataSaver) this;
@@ -88,7 +88,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     }
 
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/player/PlayerEntity;attack(Lnet/minecraft/entity/Entity;)V")
+    @Inject(at = @At("HEAD"), method = "attack(Lnet/minecraft/entity/Entity;)V")
     private void attack(Entity target, CallbackInfo ci) {
         if (!world.isClient && target.isAttackable()) {
             float cooldownProgress = getAttackCooldownProgress(0.5f); // Returns 1 if fully recharged
