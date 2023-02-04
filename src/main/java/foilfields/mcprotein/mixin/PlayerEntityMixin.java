@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(PlayerEntity.class)
@@ -23,17 +24,31 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Shadow public abstract float getAttackCooldownProgress(float baseTime);
 
-    @Shadow protected boolean isSubmergedInWater;
-
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 
+    @Inject(at = @At("RETURN"), method = "Lnet/minecraft/entity/player/PlayerEntity;getMovementSpeed()F", cancellable = true)
+    public void getMovementSpeed(CallbackInfoReturnable<Float> cir) {
+        EntityDataSaver entityDataSaver = (EntityDataSaver) this;
+        NbtCompound nbt = entityDataSaver.getPersistentData();
+        float multiplier = (((float)nbt.getInt("sprint")) / 900.0f + 1.0f);
+
+        cir.setReturnValue(cir.getReturnValueF() * multiplier);
+    }
+
+
     @Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V")
     public void tickMovement(CallbackInfo ci) {
-        if (!world.isClient && isSubmergedInWater()) {
+        if (!world.isClient) {
             EntityDataSaver entityDataSaver = (EntityDataSaver) this;
-            if (Math.random() < 0.05) SwoleData.addStat(entityDataSaver, 20, "swim", SwoleMessages.SWIM_SYNC_ID);
+            if (isSprinting()) {
+                if (Math.random() < 0.05) SwoleData.addStat(entityDataSaver, 20, "sprint", SwoleMessages.SPRINT_SYNC_ID);
+            }
+
+            if (isSubmergedInWater()) {
+                if (Math.random() < 0.05) SwoleData.addStat(entityDataSaver, 20, "swim", SwoleMessages.SWIM_SYNC_ID);
+            }
         }
     }
 
