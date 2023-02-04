@@ -36,8 +36,7 @@ public class MCProtein implements ModInitializer {
         RegisterFluids.register();
         RegisterBlocks.register();
         RegisterItems.register();
-        MilkCauldronBlock.register();
-        FishCauldronBlock.register();
+        RegisterStatusEffects.register();
 
         SwoleMessages.RegisterS2CPackets();
 

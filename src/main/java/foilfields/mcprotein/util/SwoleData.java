@@ -21,7 +21,9 @@ public class SwoleData {
 
 //        if (value > 0.0) ((ServerPlayerEntity) player).sendMessage(Text.of(stat + " " + newData), true);
 
-        syncStat(newData, (ServerPlayerEntity) player, channelName);
+        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) player;
+
+        syncStat(newData, serverPlayerEntity, channelName);
 
         return newData;
     }

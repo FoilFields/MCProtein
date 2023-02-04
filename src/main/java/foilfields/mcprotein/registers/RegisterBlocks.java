@@ -1,6 +1,8 @@
 package foilfields.mcprotein.registers;
 
 import foilfields.mcprotein.block.CurdBlock;
+import foilfields.mcprotein.block.FishCauldronBlock;
+import foilfields.mcprotein.block.MilkCauldronBlock;
 import foilfields.mcprotein.block.PumpkinBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -21,6 +23,7 @@ public class RegisterBlocks {
     });
 
     public static void register() {
-
+        MilkCauldronBlock.register();
+        FishCauldronBlock.register();
     }
 }
