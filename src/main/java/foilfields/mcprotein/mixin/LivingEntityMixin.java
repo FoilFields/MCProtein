@@ -25,8 +25,7 @@ public abstract class LivingEntityMixin extends Entity {
         if (isPlayer()) {
             EntityDataSaver entityDataSaver = (EntityDataSaver) this;
             NbtCompound nbt = entityDataSaver.getPersistentData();
-            float multiplier = (((float)nbt.getInt("jump")) / 2700.0f + 1.0f);
-            multiplier *= 1.2f;
+            float multiplier = (((float)nbt.getInt("jump")) / 4500.0f + 1.0f);
             cir.setReturnValue(cir.getReturnValueF() * multiplier);
         }
 
