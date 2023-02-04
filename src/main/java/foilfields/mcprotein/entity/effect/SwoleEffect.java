@@ -16,5 +16,6 @@ public class SwoleEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+
     }
 }
