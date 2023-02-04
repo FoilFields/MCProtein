@@ -62,6 +62,14 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         cir.setReturnValue(cir.getReturnValueF() * multiplier);
     }
 
+    @Inject(at = @At("HEAD"), method = "jump()V")
+    public void jump(CallbackInfo ci) {
+        if (!world.isClient) {
+            EntityDataSaver entityDataSaver = (EntityDataSaver) this;
+            SwoleData.addStat(entityDataSaver, 20, "jump", SwoleMessages.JUMP_SYNC_ID);
+        }
+    }
+
     @Inject(at = @At("HEAD"), method = "tickMovement()V")
     public void tickMovement(CallbackInfo ci) {
         if (!world.isClient) {

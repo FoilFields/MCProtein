@@ -1,28 +1,36 @@
 package foilfields.mcprotein.mixin;
 
-import foilfields.mcprotein.networking.SwoleMessages;
 import foilfields.mcprotein.util.EntityDataSaver;
-import foilfields.mcprotein.util.SwoleData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
+    }
+
+    @Inject(at = @At("RETURN"), method = "getJumpVelocity()F", cancellable = true)
+    protected void getJumpVelocity(CallbackInfoReturnable<Float> cir) {
+        if (isPlayer()) {
+            EntityDataSaver entityDataSaver = (EntityDataSaver) this;
+            NbtCompound nbt = entityDataSaver.getPersistentData();
+            float multiplier = (((float)nbt.getInt("jump")) / 2700.0f + 1.0f);
+            multiplier *= 1.2f;
+            cir.setReturnValue(cir.getReturnValueF() * multiplier);
+        }
+
+        cir.setReturnValue(cir.getReturnValueF());
     }
 
     @Inject(at = @At("HEAD"), method = "getNextAirUnderwater(I)I", cancellable = true)
