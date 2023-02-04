@@ -1,8 +1,10 @@
 package foilfields.mcprotein.registers;
 
 import foilfields.mcprotein.block.CurdBlock;
+import foilfields.mcprotein.block.PumpkinBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
@@ -15,7 +17,8 @@ public class RegisterBlocks {
     public static final Block CURD_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "curd_block"), new CurdBlock(FabricBlockSettings.of(Material.SNOW_LAYER).mapColor(MapColor.YELLOW).noCollision().collidable(false)));
     public static final Block CREATINE_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "creatine_block"), new Block(FabricBlockSettings.of(Material.SNOW_BLOCK).mapColor(MapColor.LIGHT_BLUE).hardness(0.2f).resistance(0.2f).sounds(BlockSoundGroup.SNOW)));
     public static final Block WHEY_PROTEIN_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "whey_protein_block"), new Block(FabricBlockSettings.of(Material.SNOW_BLOCK).mapColor(MapColor.PALE_YELLOW).hardness(0.2f).resistance(0.2f).sounds(BlockSoundGroup.SNOW)));
-    public static final Block REINFORCED_CARVED_PUMPKIN = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "reinforced_carved_pumpkin"), new Block(FabricBlockSettings.of(Material.GOURD).mapColor(MapColor.IRON_GRAY).sounds(BlockSoundGroup.METAL).hardness(1.0f).resistance(1.0f)));
+    public static final Block REINFORCED_CARVED_PUMPKIN = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "reinforced_carved_pumpkin"), new PumpkinBlock(FabricBlockSettings.of(Material.GOURD).mapColor(MapColor.IRON_GRAY).sounds(BlockSoundGroup.METAL).hardness(1.0f).resistance(1.0f)) {
+    });
 
     public static void register() {
 

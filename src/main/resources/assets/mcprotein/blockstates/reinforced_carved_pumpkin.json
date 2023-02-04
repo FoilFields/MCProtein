@@ -1,5 +1,9 @@
 {
   "variants": {
-    "": {"model": "mcprotein:block/reinforced_carved_pumpkin"}
+    "facing=north": { "model": "mcprotein:block/reinforced_carved_pumpkin" },
+    "facing=east":  { "model": "mcprotein:block/reinforced_carved_pumpkin", "y":  90},
+    "facing=south": { "model": "mcprotein:block/reinforced_carved_pumpkin", "y": 180},
+    "facing=west":  { "model": "mcprotein:block/reinforced_carved_pumpkin", "y": 270}
+
   }
 }
