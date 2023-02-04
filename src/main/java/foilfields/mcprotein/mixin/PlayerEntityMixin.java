@@ -39,7 +39,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     // Every time entity.damage is called in the attack method
     @ModifyArgs(method = "attack(Lnet/minecraft/entity/Entity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
-    private void inject(Args args) {
+    private void damageTarget(Args args) {
         float amount = args.get(1);
 
         EntityDataSaver entityDataSaver = (EntityDataSaver) this;

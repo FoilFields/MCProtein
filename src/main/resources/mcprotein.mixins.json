@@ -4,10 +4,11 @@
   "package": "foilfields.mcprotein.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BlockMixin",
     "EntityDataSaverMixin",
-    "PlayerEntityMixin",
     "LivingEntityMixin",
-    "BlockMixin"
+    "PlayerEntityMixin",
+    "PlayerInventoryMixin"
   ],
   "server": [
     "PlayerEntityMixin"

@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class SwoleData {
+    // Balanced to around 20 per second of an activity
     public static int addStat(EntityDataSaver player, int value, String stat, Identifier channelName) {
         NbtCompound nbt = player.getPersistentData();
 
@@ -18,7 +19,7 @@ public class SwoleData {
 
         nbt.putInt(stat, newData);
 
-//        if (value > 0.0) ((ServerPlayerEntity) player).sendMessage(Text.of(stat + " " + newData), true);
+        if (value > 0.0) ((ServerPlayerEntity) player).sendMessage(Text.of(stat + " " + newData), true);
 
         syncStat(newData, (ServerPlayerEntity) player, channelName);
 
