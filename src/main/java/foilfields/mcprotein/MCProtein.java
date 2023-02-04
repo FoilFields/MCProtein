@@ -18,8 +18,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 
-import static foilfields.mcprotein.networking.SwoleMessages.ATTACK_SYNC_ID;
-import static foilfields.mcprotein.networking.SwoleMessages.SWIM_SYNC_ID;
+import static foilfields.mcprotein.networking.SwoleMessages.*;
 
 public class MCProtein implements ModInitializer {
     public static final String MOD_ID = "mcprotein";
@@ -47,6 +46,10 @@ public class MCProtein implements ModInitializer {
                 serverWorld.getPlayers().forEach(player -> {
                     if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "attack", ATTACK_SYNC_ID);
                     if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "swim", SWIM_SYNC_ID);
+                    if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "sprint", SPRINT_SYNC_ID);
+                    if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "jump", JUMP_SYNC_ID);
+                    if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "mine", MINE_SYNC_ID);
+                    if (Math.random() < 0.03) SwoleData.addStat((EntityDataSaver) player, -1, "defence", DEFENCE_SYNC_ID);
                 });
             });
         });

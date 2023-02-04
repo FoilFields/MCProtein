@@ -6,6 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +20,20 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/LivingEntity;getNextAirUnderwater(I)I", cancellable = true)
+    @Inject(at = @At("RETURN"), method = "getJumpVelocity()F", cancellable = true)
+    protected void getJumpVelocity(CallbackInfoReturnable<Float> cir) {
+        if (isPlayer()) {
+            EntityDataSaver entityDataSaver = (EntityDataSaver) this;
+            NbtCompound nbt = entityDataSaver.getPersistentData();
+            float multiplier = (((float)nbt.getInt("jump")) / 2700.0f + 1.0f);
+            multiplier *= 1.2f;
+            cir.setReturnValue(cir.getReturnValueF() * multiplier);
+        }
+
+        cir.setReturnValue(cir.getReturnValueF());
+    }
+
+    @Inject(at = @At("HEAD"), method = "getNextAirUnderwater(I)I", cancellable = true)
     protected void getNextAirUnderwater(int air, CallbackInfoReturnable<Integer> cir) {
         int i = EnchantmentHelper.getRespiration((LivingEntity)(Object)this);
 
