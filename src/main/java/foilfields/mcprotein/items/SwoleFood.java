@@ -36,7 +36,7 @@ public class SwoleFood extends Item {
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) user;
             Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-            serverPlayerEntity.addStatusEffect(new StatusEffectInstance(effect, duration, amplifier));
+            serverPlayerEntity.addStatusEffect(new StatusEffectInstance(effect, duration, amplifier, false, false, true));
         }
 
         return stack;

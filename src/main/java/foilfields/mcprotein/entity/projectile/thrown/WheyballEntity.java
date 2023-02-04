@@ -5,11 +5,14 @@ package foilfields.mcprotein.entity.projectile.thrown;
 
 import foilfields.mcprotein.registers.RegisterEntities;
 import foilfields.mcprotein.registers.RegisterItems;
+import foilfields.mcprotein.registers.RegisterStatusEffects;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
@@ -20,6 +23,8 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -55,8 +60,9 @@ public class WheyballEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        if (entity instanceof PlayerEntity) {
-            ((PlayerEntity) entity).giveItemStack(RegisterItems.WHEY_PROTEIN.getDefaultStack());
+
+        if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
+            serverPlayerEntity.addStatusEffect(new StatusEffectInstance(RegisterStatusEffects.PROTEIN, 20 * 20, 0, false, false, true));
         }
     }
 
