@@ -19,7 +19,7 @@ public class SwoleData {
 
         nbt.putInt(stat, newData);
 
-        if (value > 0.0) ((ServerPlayerEntity) player).sendMessage(Text.of(stat + " " + newData), true);
+//        if (value > 0.0) ((ServerPlayerEntity) player).sendMessage(Text.of(stat + " " + newData), true);
 
         syncStat(newData, (ServerPlayerEntity) player, channelName);
 
