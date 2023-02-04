@@ -66,7 +66,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     public void tickMovement(CallbackInfo ci) {
         if (!world.isClient) {
             EntityDataSaver entityDataSaver = (EntityDataSaver) this;
-            if (isSprinting()) {
+            if (isSprinting() && !isSubmergedInWater()) {
                 if (Math.random() < 0.05) SwoleData.addStat(entityDataSaver, 20, "sprint", SwoleMessages.SPRINT_SYNC_ID);
             }
 
