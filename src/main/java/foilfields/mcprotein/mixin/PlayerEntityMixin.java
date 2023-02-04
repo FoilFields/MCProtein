@@ -57,7 +57,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     public void getMovementSpeed(CallbackInfoReturnable<Float> cir) {
         EntityDataSaver entityDataSaver = (EntityDataSaver) this;
         NbtCompound nbt = entityDataSaver.getPersistentData();
-        float multiplier = (((float)nbt.getInt("sprint")) / 900.0f + 1.0f);
+        float multiplier = (((float)nbt.getInt("sprint")) / 2700.0f + 1.0f);
 
         cir.setReturnValue(cir.getReturnValueF() * multiplier);
     }
