@@ -1,15 +1,22 @@
 package foilfields.mcprotein.mixin;
 
+import foilfields.mcprotein.networking.SwoleMessages;
 import foilfields.mcprotein.util.EntityDataSaver;
+import foilfields.mcprotein.util.SwoleData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
@@ -18,7 +25,7 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/entity/LivingEntity;getNextAirUnderwater(I)I", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "getNextAirUnderwater(I)I", cancellable = true)
     protected void getNextAirUnderwater(int air, CallbackInfoReturnable<Integer> cir) {
         int i = EnchantmentHelper.getRespiration((LivingEntity)(Object)this);
 
