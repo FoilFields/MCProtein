@@ -1,6 +1,5 @@
 package foilfields.mcprotein;
 
-import foilfields.mcprotein.events.ServerPlayConnectionJoin;
 import foilfields.mcprotein.networking.SwoleMessages;
 import foilfields.mcprotein.registers.*;
 import foilfields.mcprotein.util.EntityDataSaver;
@@ -8,7 +7,6 @@ import foilfields.mcprotein.util.SwoleData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.*;

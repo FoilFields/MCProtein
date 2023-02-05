@@ -20,10 +20,19 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
 
+/**
+ * Client side entry point for MCProtein.
+ * <p>A mod initializer ran only on {@link EnvType#CLIENT}.</p>
+ * <p>Mainly handles initialising rendering and packets.</p>
+ */
 @Environment(EnvType.CLIENT)
 public class MCProteinClient implements ClientModInitializer {
     public static final EntityModelLayer MODEL_WHEY_GOLEM_LAYER = new EntityModelLayer(new Identifier(MCProtein.MOD_ID, "whey_golem"), "main");
 
+    /**
+     * Entry point for client
+     * <p>Mainly handles initialising fluid rendering, entity renderers and S2C packets</p>
+     */
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.register(RegisterEntities.WHEY_GOLEM, WheyGolemRenderer::new);

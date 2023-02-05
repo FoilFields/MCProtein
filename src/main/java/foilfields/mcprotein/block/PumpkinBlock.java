@@ -13,6 +13,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
+/** Pumpkin block class.
+ * <p>Lets the block have rotational properties.</p>
+ * @author woukie
+ */
 public class PumpkinBlock extends HorizontalFacingBlock {
 
     public PumpkinBlock(Settings settings) {

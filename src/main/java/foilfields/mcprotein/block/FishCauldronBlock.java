@@ -34,6 +34,10 @@ import java.util.function.Predicate;
 import static foilfields.mcprotein.registers.RegisterCauldrons.*;
 import static net.minecraft.block.cauldron.CauldronBehavior.*;
 
+/** Fish cauldron block class.
+ * <p>Cauldron the player fills with fish to get fish oil.</p>
+ * @author woukie
+ */
 public class FishCauldronBlock extends LeveledCauldronBlock {
     public static final IntProperty AGE = Properties.AGE_7;
 

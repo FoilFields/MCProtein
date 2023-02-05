@@ -13,6 +13,9 @@ import net.minecraft.util.registry.Registry;
 
 import static foilfields.mcprotein.MCProtein.MOD_ID;
 
+/**
+ * Class for registering modded entities.
+ */
 public class RegisterEntities {
     public static final EntityType<WheyGolemEntity> WHEY_GOLEM = Registry.register(Registry.ENTITY_TYPE, new Identifier(MOD_ID, "whey_golem"), FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WheyGolemEntity::new).dimensions(EntityDimensions.fixed(0.7f, 1.9f)).build());
     public static final EntityType<WheyballEntity> WHEYBALL = Registry.register(Registry.ENTITY_TYPE, new Identifier(MOD_ID, "wheyball"), FabricEntityTypeBuilder.<WheyballEntity>create(SpawnGroup.MISC, WheyballEntity::new)
@@ -22,6 +25,12 @@ public class RegisterEntities {
             .build()
     );
 
+    /**
+     * Registers entities.
+     * <p>Should be called once when the server initialises.</p>
+     * <p>Also registers mob attributes.</p>
+     * @author woukie
+     */
     public static void register() {
         FabricDefaultAttributeRegistry.register(WHEY_GOLEM, WheyGolemEntity.createMobAttributes());
     }

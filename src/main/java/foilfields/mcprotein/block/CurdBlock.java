@@ -1,5 +1,6 @@
 package foilfields.mcprotein.block;
 
+import foilfields.mcprotein.networking.SwoleMessages;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -8,6 +9,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 
+/** Curd block class.
+ * <p>Block that appears on top of a milk cauldron after it has aged.</p>
+ * @author woukie
+ */
 public class CurdBlock extends Block {
     public CurdBlock(Settings settings) {
         super(settings);

@@ -12,6 +12,9 @@ import net.minecraft.util.registry.Registry;
 import static foilfields.mcprotein.registers.RegisterFluids.STILL_FISH_OIL;
 import static foilfields.mcprotein.registers.RegisterFluids.STILL_WHEY;
 
+/**
+ * Class for registering modded items.
+ */
 public class RegisterItems {
     public static final FoodComponent SNORT = new FoodComponent.Builder().hunger(0).saturationModifier(1f).build();
 
@@ -35,6 +38,9 @@ public class RegisterItems {
     public static final Item REINFORCED_CARVED_PUMPKIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "reinforced_carved_pumpkin"), new BlockItem(RegisterBlocks.REINFORCED_CARVED_PUMPKIN, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
 
 
+    /** Registers items.
+     * <p>Should be called once when the server initialises.</p>
+     */
     public static void register() {
 
     }

@@ -4,6 +4,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
+/** Base class for swole effects.
+ * <p>Any registered swole effect will have a positive effect on the players activity leveling.</p>
+ * @author woukie
+ */
 public class SwoleEffect extends StatusEffect {
     public SwoleEffect() {
         super(StatusEffectCategory.BENEFICIAL, 0xE0D1A3);

@@ -33,6 +33,12 @@ import static net.minecraft.block.cauldron.CauldronBehavior.*;
 //      c) See other lines for adding additional bucket behaviour
 //      d) Call registerFillBottle(CAULDRON_BEHAVIOUR, YOUR_BOTTLE);
 
+/**
+ * Class for registering cauldrons.
+ * Declares behaviours and blocks for modded cauldrons.
+ *
+ * @author woukie
+ */
 public class RegisterCauldrons {
 
     //      CAULDRONS
@@ -58,6 +64,12 @@ public class RegisterCauldrons {
     public static final Block WHEY_CAULDRON = Registry.register(Registry.BLOCK, new Identifier(MCProtein.MOD_ID, "whey_cauldron"), new LeveledCauldronBlock(AbstractBlock.Settings.copy(CAULDRON), LeveledCauldronBlock.RAIN_PREDICATE, WHEY_CAULDRON_BEHAVIOUR));
     public static final CauldronBehavior FILL_WITH_WHEY = (state, world, pos, player, hand, stack) -> CauldronBehavior.fillCauldron(world, pos, player, hand, stack, WHEY_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, 3), SoundEvents.ITEM_BUCKET_EMPTY);
 
+    /**
+     * Registers all bucket behaviours.
+     * Adds behaviours for filling cauldron with modded and vanilla buckets
+     *
+     * @param behavior cauldron behaviour
+     */
     public static void registerBucketBehavior(Map<Item, CauldronBehavior> behavior) {
         behavior.put(Items.LAVA_BUCKET, FILL_WITH_LAVA);
         behavior.put(Items.WATER_BUCKET, FILL_WITH_WATER);
@@ -65,12 +77,27 @@ public class RegisterCauldrons {
         registerModdedBucketBehavior(behavior);
     }
 
+    /**
+     * Registers modded bucket behaviours.
+     * Adds behaviours for filling cauldron with modded buckets
+     *
+     * @param behavior cauldron behaviour
+     */
     public static void registerModdedBucketBehavior(Map<Item, CauldronBehavior> behavior) {
         behavior.put(Items.MILK_BUCKET, FILL_WITH_MILK);
         behavior.put(RegisterItems.FISH_OIL_BUCKET, RegisterCauldrons.FILL_WITH_FISH_OIL);
         behavior.put(RegisterItems.WHEY_BUCKET, RegisterCauldrons.FILL_WITH_WHEY);
     }
 
+    /**
+     * Registers fill with bottle behaviour.
+     * Behaviour for filling a cauldron with a bottle.
+     * Also registers behaviour for filling empty cauldrons.
+     *
+     * @param fullBehaviour non-empty cauldron behaviour
+     * @param bottleItem bottle that triggers increasing the cauldron level
+     * @param cauldron block to switch to from empty
+     */
     public static void registerFillWithBottle(Map<Item, CauldronBehavior> fullBehaviour, Item bottleItem, Block cauldron) {
         EMPTY_CAULDRON_BEHAVIOR.put(bottleItem, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
@@ -101,6 +128,13 @@ public class RegisterCauldrons {
         });
     }
 
+    /**
+     * Registers fill bottle behaviour.
+     * Behaviour for filling a bottle and reducing the fluid level of the cauldron.
+     *
+     * @param behavior cauldron behaviour
+     * @param bottleItem product received from filling
+     */
     public static void registerFillBottle(Map<Item, CauldronBehavior> behavior, Item bottleItem) {
         behavior.put(Items.GLASS_BOTTLE, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
@@ -116,6 +150,10 @@ public class RegisterCauldrons {
         });
     }
 
+    /**
+     * Registers cauldron blocks.
+     * Should be called once when the server initialises.
+     */
     public static void register() {
         // Add behaviour for filling cauldron with modded bucket
         registerModdedBucketBehavior(WATER_CAULDRON_BEHAVIOR);

@@ -21,6 +21,10 @@ import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/** Whey golem spawner class.
+ * <p>Checks for a specific configuration when a reinforced pumpkin is placed. Spawns a golem if the conditions are met.</p>
+ * @author woukie
+ */
 public class WheyGolemSpawner {
     public static void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack, CallbackInfo info) {
         if (state.getBlock() != RegisterBlocks.REINFORCED_CARVED_PUMPKIN) {

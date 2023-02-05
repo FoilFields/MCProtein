@@ -28,7 +28,10 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
-
+/** Wheyball entity class.
+ * <p>Thrown by the whey golem, applies a 20 second level 0 protein status effect to its target.</p>
+ * @author woukie
+ */
 public class WheyballEntity extends ThrownItemEntity {
     public WheyballEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);

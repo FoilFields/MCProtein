@@ -3,7 +3,16 @@ package foilfields.mcprotein.util;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 
+/** Class containing methods for useful block checks.
+ * @author woukie
+ */
 public class BlockCheck {
+
+    /** Gets whether a block is a valid heat source.
+     * <p>Used by cauldrons to check if they should speed up ageing.</p>
+     * @return whether the block is a valid heat source
+     * @author woukie
+     */
     public static boolean isHeatSource(BlockState block) {
         return block.isOf(Blocks.FIRE)
                 || block.isOf(Blocks.SOUL_FIRE)

@@ -11,6 +11,9 @@ import net.minecraft.util.math.MathHelper;
 // Exported for Minecraft version 1.17+ for Yarn
 // Paste this class into your mod and generate all required imports
 
+/** Whey golem model class.
+ * @author woukie
+ */
 public class WheyGolemEntityModel<T extends WheyGolemEntity> extends SnowGolemEntityModel<T> {
 	private final ModelPart head;
 	private final ModelPart leftArm;

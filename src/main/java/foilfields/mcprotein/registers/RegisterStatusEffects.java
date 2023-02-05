@@ -7,10 +7,16 @@ import net.minecraft.util.registry.Registry;
 
 import static foilfields.mcprotein.MCProtein.MOD_ID;
 
+/**
+ * Class for registering modded status effects.
+ */
 public class RegisterStatusEffects {
     public static StatusEffect PROTEIN = new SwoleEffect();
     public static StatusEffect CREATINE = new SwoleEffect();
 
+    /** Registers status effects.
+     * <p>Should be called once when the server initialises.</p>
+     */
     public static void register() {
         PROTEIN = Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "protein"), PROTEIN);
         CREATINE = Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "creatine"), CREATINE);

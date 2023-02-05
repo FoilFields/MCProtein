@@ -31,6 +31,10 @@ import java.util.function.Predicate;
 import static foilfields.mcprotein.registers.RegisterCauldrons.*;
 import static net.minecraft.block.cauldron.CauldronBehavior.*;
 
+/** Milk cauldron block class.
+ * <p>Cauldron the player fills with milk to get curd and whey.</p>
+ * @author woukie
+ */
 public class MilkCauldronBlock extends LeveledCauldronBlock {
     public static final IntProperty AGE = Properties.AGE_7;
 

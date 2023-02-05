@@ -6,6 +6,9 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
+/** Whey golem renderer class.
+ * @author woukie
+ */
 public class WheyGolemRenderer extends MobEntityRenderer<WheyGolemEntity, WheyGolemEntityModel<WheyGolemEntity>> {
 
     public WheyGolemRenderer(EntityRendererFactory.Context context) {
