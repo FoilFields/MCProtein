@@ -3,6 +3,8 @@ package foilfields.mcprotein.client;
 import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.entity.passive.WheyGolemEntityModel;
 import foilfields.mcprotein.entity.passive.WheyGolemRenderer;
+import foilfields.mcprotein.networking.SwoleMessages;
+import foilfields.mcprotein.registers.RegisterBlocks;
 import foilfields.mcprotein.registers.RegisterEntities;
 import foilfields.mcprotein.registers.RegisterFluids;
 import net.fabricmc.api.ClientModInitializer;
@@ -26,6 +28,10 @@ public class MCProteinClient implements ClientModInitializer {
     public void onInitializeClient() {
         EntityRendererRegistry.register(RegisterEntities.WHEY_GOLEM, WheyGolemRenderer::new);
         EntityRendererRegistry.register(RegisterEntities.WHEYBALL, FlyingItemEntityRenderer::new);
+
+        SwoleMessages.RegisterS2CPackets();
+
+        BlockRenderLayerMap.INSTANCE.putBlock(RegisterBlocks.CURD_BLOCK, RenderLayer.getCutout());
 
         EntityModelLayerRegistry.registerModelLayer(MODEL_WHEY_GOLEM_LAYER, WheyGolemEntityModel::getTexturedModelData);
 

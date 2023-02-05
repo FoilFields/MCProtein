@@ -22,4 +22,8 @@ public class SwoleMessages {
         ClientPlayNetworking.registerGlobalReceiver(MINE_SYNC_ID, MineSyncDataS2CPacket::Receive);
         ClientPlayNetworking.registerGlobalReceiver(DEFENCE_SYNC_ID, DefenceSyncDataS2CPacket::Receive);
     }
+
+    public static void RegisterC2SPackets() {
+
+    }
 }

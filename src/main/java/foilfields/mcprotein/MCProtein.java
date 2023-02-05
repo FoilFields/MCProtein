@@ -1,20 +1,16 @@
 package foilfields.mcprotein;
 
-import foilfields.mcprotein.block.FishCauldronBlock;
-import foilfields.mcprotein.block.MilkCauldronBlock;
-import foilfields.mcprotein.events.ClientPlayConnectionJoin;
+import foilfields.mcprotein.events.ServerPlayConnectionJoin;
 import foilfields.mcprotein.networking.SwoleMessages;
 import foilfields.mcprotein.registers.*;
 import foilfields.mcprotein.util.EntityDataSaver;
 import foilfields.mcprotein.util.SwoleData;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 
@@ -29,7 +25,7 @@ public class MCProtein implements ModInitializer {
     public void onInitialize() {
         FuelRegistry.INSTANCE.add(RegisterItems.FISH_OIL_BUCKET, 200*32);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(RegisterBlocks.CURD_BLOCK, RenderLayer.getCutout());
+        SwoleMessages.RegisterC2SPackets();
 
         RegisterCauldrons.register();
         RegisterEntities.register();
@@ -38,7 +34,7 @@ public class MCProtein implements ModInitializer {
         RegisterItems.register();
         RegisterStatusEffects.register();
 
-        SwoleMessages.RegisterS2CPackets();
+//        ServerPlayConnectionEvents.JOIN.register(new ServerPlayConnectionJoin());
 
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             server.getWorlds().forEach(serverWorld -> {
@@ -52,7 +48,5 @@ public class MCProtein implements ModInitializer {
                 });
             });
         });
-
-        ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionJoin());
     }
 }
