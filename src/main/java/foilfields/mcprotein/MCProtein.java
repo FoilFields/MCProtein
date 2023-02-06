@@ -14,11 +14,27 @@ import net.minecraft.util.Identifier;
 
 import static foilfields.mcprotein.networking.SwoleMessages.*;
 
+/**
+ * Entry class for the server.
+ * <p>Responsible for initialising server side code.</p>
+ */
 public class MCProtein implements ModInitializer {
+
+    /**
+     * Mod ID.
+     */
     public static final String MOD_ID = "mcprotein";
 
+    /**
+     * Custom mod item group.
+     * <p>Register every item in this mod in this group.</p>
+     */
     public static ItemGroup MOD_ITEM_GROUP = FabricItemGroupBuilder.create(new Identifier(MOD_ID, "mcprotein")).icon(() -> new ItemStack(Blocks.CAULDRON)).build();
 
+    /**
+     * Server entry point
+     * <p>Triggers registers and controls natural decay of players abilities.</p>
+     */
     @Override
     public void onInitialize() {
         FuelRegistry.INSTANCE.add(RegisterItems.FISH_OIL_BUCKET, 200*32);

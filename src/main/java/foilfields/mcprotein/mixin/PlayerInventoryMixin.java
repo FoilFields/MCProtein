@@ -12,10 +12,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Mixin for player inventory class.
+ * <p>Used for swole system</p>
+ */
 @Mixin(PlayerInventory.class)
 public abstract class PlayerInventoryMixin {
+    /**
+     * Shadow variable
+     */
     @Shadow @Final public PlayerEntity player;
 
+    /**
+     * Gets a scaled breaking speed based off the mining level of the player
+     * @param block block to be mined
+     * @param cir callback return info
+     */
     @Inject(at = @At("RETURN"), method = "getBlockBreakingSpeed(Lnet/minecraft/block/BlockState;)F", cancellable = true)
     public void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> cir) {
         EntityDataSaver entityDataSaver = (EntityDataSaver) player;

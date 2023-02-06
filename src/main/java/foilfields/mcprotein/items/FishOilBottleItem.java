@@ -23,13 +23,27 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Item class for the fish oil bottle.
+ */
 public class FishOilBottleItem extends Item {
-    private static final int MAX_USE_TIME = 40;
 
+    /**
+     * Constructor for the fish oil bottle
+     * @param settings settings to construct with
+     */
     public FishOilBottleItem(Settings settings) {
         super(settings);
     }
 
+    /**
+     * Called on item finish using
+     * <p>Replaces the held item with a glass bottle and gives the player temporary regeneration</p>
+     * @param stack the item being consumed
+     * @param world the world the item is being consumed in
+     * @param user the user who consumed the item
+     * @return the item after it has been consumed
+     */
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
@@ -62,26 +76,52 @@ public class FishOilBottleItem extends Item {
         return stack;
     }
 
+    /**
+     * Gets the use time of the item
+     * @param stack item to get use time of
+     * @return always 40
+     */
     @Override
     public int getMaxUseTime(ItemStack stack) {
         return 40;
     }
 
+    /**
+     * Get the purpose of the item
+     * <p>Set to drink</p>
+     * @param stack item stack
+     * @return the drink-action
+     */
     @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }
 
+    /**
+     * Get the drink-sound of the food
+     * @return the honey bottle drink sound
+     */
     @Override
     public SoundEvent getDrinkSound() {
         return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
     }
 
+    /**
+     * Get the eat-sound of the food
+     * @return the honey bottle drink sound
+     */
     @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
     }
 
+    /**
+     * Triggers consuming the item
+     * @param world world the item is used in
+     * @param user user who triggered using
+     * @param hand hand of the user
+     * @return result of using
+     */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);

@@ -36,8 +36,14 @@ import static net.minecraft.block.cauldron.CauldronBehavior.*;
  * @author woukie
  */
 public class MilkCauldronBlock extends LeveledCauldronBlock {
+    /** Age of the fish cauldron.
+     * <p>Resets if the level is disturbed and only increases when full.</p>
+     */
     public static final IntProperty AGE = Properties.AGE_7;
 
+    /** Registers all behaviours.
+     * <p>Should be called when server first initialises.</p>
+     */
     public static void register() {
         MILK_CAULDRON_BEHAVIOUR.put(Items.LAVA_BUCKET, FILL_WITH_LAVA);
         MILK_CAULDRON_BEHAVIOUR.put(Items.WATER_BUCKET, FILL_WITH_WATER);
@@ -101,21 +107,43 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
         MILK_CAULDRON_BEHAVIOUR.put(Items.BUCKET, (state2, world, pos, player, hand, stack) -> CauldronBehavior.emptyCauldron(state2, world, pos, player, hand, stack, new ItemStack(Items.MILK_BUCKET), state -> state.get(LeveledCauldronBlock.LEVEL) == 3, SoundEvents.ITEM_BUCKET_FILL));
     }
 
+    /** Default milk cauldron constructor.
+     * <p>Registers default state as well.</p>
+     * @param settings block settings
+     * @param precipitationPredicate precipitation predicate, unused
+     * @param behaviorMap behaviour map
+     */
     public MilkCauldronBlock(Settings settings, Predicate<Biome.Precipitation> precipitationPredicate, Map<Item, CauldronBehavior> behaviorMap) {
         super(settings, precipitationPredicate, behaviorMap);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
+    /** Adds properties to the cauldron.
+     * @param builder builder
+     */
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
         builder.add(LEVEL);
     }
 
+    /** Get BlockState with a specific age.
+     * @param age age of block to get
+     * @return the BlockState with the specified age
+     */
     public BlockState withAge(int age) {
         return getDefaultState().with(AGE, age);
     }
 
+    /** Handles leveling the cauldron.
+     * <p>Calculates whether the block should age on a random tick.</p>
+     * <p>Chance to age increases if heated.</p>
+     * <p>Also manages switching to aged state.</p>
+     * @param state BlockState of the block
+     * @param world world the block is in
+     * @param pos position of the block
+     * @param random randomness
+     */
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = state.get(AGE);
@@ -142,6 +170,11 @@ public class MilkCauldronBlock extends LeveledCauldronBlock {
         super.randomTick(state, world, pos, random);
     }
 
+    /**
+     * Enables random ticks for this block
+     * @param state BlockState of the block
+     * @return whether the block has random ticks
+     */
     @Override
     public boolean hasRandomTicks(BlockState state) {
         return true;

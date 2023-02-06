@@ -6,7 +6,19 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 
+/** Swim sync packet class.
+ * <p>Used to sync stat with the client.</p>
+ * @author woukie
+ */
 public class SwimSyncDataS2CPacket {
+
+    /** Updates entities data.
+     * @param client client to update
+     * @param handler client network handler
+     * @param buf level to update the player with
+     * @param responseSender sender
+     * @author woukie
+     */
     public static void Receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         int level = buf.readInt();
         if (client.player != null) ((EntityDataSaver) client.player).getPersistentData().putInt("swim", level);

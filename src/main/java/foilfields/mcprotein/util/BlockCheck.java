@@ -11,6 +11,7 @@ public class BlockCheck {
     /** Gets whether a block is a valid heat source.
      * <p>Used by cauldrons to check if they should speed up ageing.</p>
      * @return whether the block is a valid heat source
+     * @param block the block to check
      * @author woukie
      */
     public static boolean isHeatSource(BlockState block) {

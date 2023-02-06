@@ -39,8 +39,15 @@ import static net.minecraft.block.cauldron.CauldronBehavior.*;
  * @author woukie
  */
 public class FishCauldronBlock extends LeveledCauldronBlock {
+    /** Age of the fish cauldron.
+     * <p>Resets if the level is disturbed and only increases when full.</p>
+     */
     public static final IntProperty AGE = Properties.AGE_7;
 
+    /** Registers add fish behaviour.
+     * <p>Registers additional behavior on both empty and full cauldrons.</p>
+     * @param fish item to be used as a fish
+     */
     public static void addFish(Item fish) {
         EMPTY_CAULDRON_BEHAVIOR.put(fish, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
@@ -73,6 +80,11 @@ public class FishCauldronBlock extends LeveledCauldronBlock {
         });
     }
 
+    /** Registers add bucket behaviour.
+     * <p>Registers additional behavior on both empty and full cauldrons.</p>
+     * <p>Differs from addFish as empty bucket is a bi-product.</p>
+     * @param bucket item to be used as a bucket
+     */
     public static void addBucket(Item bucket) {
         EMPTY_CAULDRON_BEHAVIOR.put(bucket, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
@@ -105,6 +117,9 @@ public class FishCauldronBlock extends LeveledCauldronBlock {
         });
     }
 
+    /** Registers all behaviours.
+     * <p>Should be called when server first initialises.</p>
+     */
     public static void register() {
         FISH_CAULDRON_BEHAVIOUR.put(Items.LAVA_BUCKET, FILL_WITH_LAVA);
         FISH_CAULDRON_BEHAVIOUR.put(Items.WATER_BUCKET, FILL_WITH_WATER);
@@ -129,21 +144,43 @@ public class FishCauldronBlock extends LeveledCauldronBlock {
         addBucket(Items.TROPICAL_FISH_BUCKET);
     }
 
+    /** Default fish cauldron constructor.
+     * <p>Registers default state as well.</p>
+     * @param settings block settings
+     * @param precipitationPredicate precipitation predicate, unused
+     * @param behaviorMap behaviour map
+     */
     public FishCauldronBlock(Settings settings, Predicate<Biome.Precipitation> precipitationPredicate, Map<Item, CauldronBehavior> behaviorMap) {
         super(settings, precipitationPredicate, behaviorMap);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
+    /** Adds properties to the cauldron.
+     * @param builder builder
+     */
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
         builder.add(LEVEL);
     }
 
+    /** Get BlockState with a specific age.
+     * @param age age of block to get
+     * @return the BlockState with the specified age
+     */
     public BlockState withAge(int age) {
         return getDefaultState().with(AGE, age);
     }
 
+    /** Handles leveling the cauldron.
+     * <p>Calculates whether the block should age on a random tick.</p>
+     * <p>Chance to age increases if heated.</p>
+     * <p>Also manages switching to aged state.</p>
+     * @param state BlockState of the block
+     * @param world world the block is in
+     * @param pos position of the block
+     * @param random randomness
+     */
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = state.get(AGE);
@@ -165,6 +202,11 @@ public class FishCauldronBlock extends LeveledCauldronBlock {
         super.randomTick(state, world, pos, random);
     }
 
+    /**
+     * Enables random ticks for this block
+     * @param state BlockState of the block
+     * @return whether the block has random ticks
+     */
     @Override
     public boolean hasRandomTicks(BlockState state) {
         return true;

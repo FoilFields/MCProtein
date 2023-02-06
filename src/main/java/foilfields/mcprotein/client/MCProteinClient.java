@@ -27,6 +27,9 @@ import net.minecraft.util.Identifier;
  */
 @Environment(EnvType.CLIENT)
 public class MCProteinClient implements ClientModInitializer {
+    /**
+     * Model layer for the whey golem.
+     */
     public static final EntityModelLayer MODEL_WHEY_GOLEM_LAYER = new EntityModelLayer(new Identifier(MCProtein.MOD_ID, "whey_golem"), "main");
 
     /**

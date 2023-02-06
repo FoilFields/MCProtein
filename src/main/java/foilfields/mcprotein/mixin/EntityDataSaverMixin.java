@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/** Class for custom entity data for the player.
+ * <p>Used entirely for storing players swole data.</p>
+ * @author woukie
+ */
 @Mixin(Entity.class)
 public abstract class EntityDataSaverMixin implements EntityDataSaver {
     private NbtCompound persistantData;
@@ -23,6 +27,12 @@ public abstract class EntityDataSaverMixin implements EntityDataSaver {
         return persistantData;
     }
 
+    /** Injected into writeNbt method of entity.
+     * <p>Responsible for writing players swole data.</p>
+     * @param nbt nbt
+     * @param cir cir
+     * @author woukie
+     */
     @Inject(method = "writeNbt", at = @At("HEAD"))
     protected void writeNbt(NbtCompound nbt, CallbackInfoReturnable<NbtCompound> cir) {
         if (persistantData != null) {
@@ -30,6 +40,12 @@ public abstract class EntityDataSaverMixin implements EntityDataSaver {
         }
     }
 
+    /** Injected into readNbt method of entity.
+     * <p>Responsible for reading players swole data.</p>
+     * @param nbt nbt
+     * @param ci ci
+     * @author woukie
+     */
     @Inject(method = "readNbt", at = @At("HEAD"))
     protected void readNbt(NbtCompound nbt, CallbackInfo ci) {
         if (nbt.contains("mcprotein.swole_data", NbtElement.COMPOUND_TYPE)) {

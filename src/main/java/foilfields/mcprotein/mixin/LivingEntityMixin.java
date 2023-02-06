@@ -14,12 +14,25 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * Mixin for injecting code into the living entity class.
+ * <p>Mainly used for swole leveling and effects</p>
+ */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
+    /**
+     * Shadow constructor
+     * @param type type
+     * @param world world
+     */
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
+    /**
+     * Scales the jump velocity by the players level
+     * @param cir callback info
+     */
     @Inject(at = @At("RETURN"), method = "getJumpVelocity()F", cancellable = true)
     protected void getJumpVelocity(CallbackInfoReturnable<Float> cir) {
         if (isPlayer()) {
@@ -32,6 +45,11 @@ public abstract class LivingEntityMixin extends Entity {
         cir.setReturnValue(cir.getReturnValueF());
     }
 
+    /**
+     * Returns a modified air time based on players swim level
+     * @param air air
+     * @param cir callback info
+     */
     @Inject(at = @At("HEAD"), method = "getNextAirUnderwater(I)I", cancellable = true)
     protected void getNextAirUnderwater(int air, CallbackInfoReturnable<Integer> cir) {
         int i = EnchantmentHelper.getRespiration((LivingEntity)(Object)this);

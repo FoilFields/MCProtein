@@ -12,6 +12,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
+/** Abstract fluid class.
+ * <p>Used to simplify registering new modded fluids.</p>
+ * @author woukie
+ */
 public abstract class AbstractFluid extends FlowableFluid {
     @Override
     public boolean matchesType(Fluid fluid) {
