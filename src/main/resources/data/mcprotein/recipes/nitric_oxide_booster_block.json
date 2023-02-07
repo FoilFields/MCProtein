@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mcprotein:nitric_oxide_booster"
+    }
+  },
+  "result": {
+    "item": "mcprotein:nitric_oxide_booster_block",
+    "count": 1
+  }
+}

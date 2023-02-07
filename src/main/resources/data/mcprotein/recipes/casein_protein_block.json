@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mcprotein:casein_protein"
+    }
+  },
+  "result": {
+    "item": "mcprotein:casein_protein_block",
+    "count": 1
+  }
+}

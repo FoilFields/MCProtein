@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "mcprotein:glucose_block"
+              "name": "mcprotein:nitric_oxide_booster_block"
             },
             {
               "type": "minecraft:item",
@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "mcprotein:glucose"
+              "name": "mcprotein:nitric_oxide_booster"
             }
           ]
         }

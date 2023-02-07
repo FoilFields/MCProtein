@@ -2,6 +2,11 @@
   "replace": false,
   "values": [
     "mcprotein:creatine_block",
+    "mcprotein:glutamine_block",
+    "mcprotein:dextrose_block",
+    "mcprotein:bcaa_block",
+    "mcprotein:casein_protein_block",
+    "mcprotein:nitric_oxide_booster_block",
     "mcprotein:whey_protein_block"
   ]
 }

@@ -5,11 +5,17 @@ import foilfields.mcprotein.items.FishOilBottleItem;
 import foilfields.mcprotein.items.MilkBottleItem;
 import foilfields.mcprotein.items.SwoleFood;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.Material;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import static foilfields.mcprotein.MCProtein.MOD_ID;
 import static foilfields.mcprotein.registers.RegisterFluids.STILL_FISH_OIL;
 import static foilfields.mcprotein.registers.RegisterFluids.STILL_WHEY;
 
@@ -41,10 +47,16 @@ public class RegisterItems {
     public static final Item CURD = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "curd"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.CARROT)));
     public static final Item CHEESE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "cheese"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.BREAD)));
 
+    public static final Item REINFORCED_CARVED_PUMPKIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "reinforced_carved_pumpkin"), new BlockItem(RegisterBlocks.REINFORCED_CARVED_PUMPKIN, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item WHEY_PROTEIN_BLOCK = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_protein_block"), new BlockItem(RegisterBlocks.WHEY_PROTEIN_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item CREATINE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "creatine_block"), new BlockItem(RegisterBlocks.CREATINE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
-    public static final Item REINFORCED_CARVED_PUMPKIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "reinforced_carved_pumpkin"), new BlockItem(RegisterBlocks.REINFORCED_CARVED_PUMPKIN, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item GLUCOSE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "glucose_block"), new BlockItem(RegisterBlocks.GLUCOSE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
 
+    public static final Item BCAA_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bcaa_block"), new BlockItem(RegisterBlocks.BCAA_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item DEXTROSE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "dextrose_block"), new BlockItem(RegisterBlocks.DEXTROSE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item GLUTAMINE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "glutamine_block"), new BlockItem(RegisterBlocks.GLUTAMINE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item NITRIC_OXIDE_BOOSTER_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "nitric_oxide_booster_block"), new BlockItem(RegisterBlocks.NITRIC_OXIDE_BOOSTER_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item CASEIN_PROTEIN_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "casein_protein_block"), new BlockItem(RegisterBlocks.CASEIN_PROTEIN_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
 
     /** Registers items.
      * <p>Should be called once when the server initialises.</p>

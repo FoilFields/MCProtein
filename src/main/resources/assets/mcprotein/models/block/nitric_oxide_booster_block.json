@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "mcprotein:block/nitric_oxide_booster_block"
+	}
+}
