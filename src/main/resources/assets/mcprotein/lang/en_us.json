@@ -13,11 +13,19 @@
   "item.mcprotein.nitric_oxide_booster": "Nitric Oxide Booster",
   "item.mcprotein.beetroot_extract": "Beetroot Extract",
   "item.mcprotein.bcaa": "BCAA",
+  "item.mcprotein.glucose": "Glucose",
+  "item.mcprotein.dextrose": "Dextrose",
+  "item.mcprotein.bacteria": "Bacteria",
+  "item.mcprotein.glutamine": "Glutamine",
+  "item.mcprotein.casein_protein": "Casein Protein",
   "block.mcprotein.creatine_block": "Creatine Block",
   "block.mcprotein.whey_protein_block": "Whey Protein Block",
   "block.mcprotein.reinforced_carved_pumpkin": "Reinforced Carved Pumpkin",
   "effect.mcprotein.bcaa": "BCAA",
   "effect.mcprotein.creatine": "Creatine",
-  "effect.mcprotein.nitric_oxide_booster": "Nitric Oxide Booster",
-  "effect.mcprotein.protein": "Protein"
+  "effect.mcprotein.nitric_oxide_booster": "Nitric Oxide",
+  "effect.mcprotein.whey_protein": "Whey Protein",
+  "effect.mcprotein.casein_protein": "Casein Protein",
+  "effect.mcprotein.glutamine": "Glutamine",
+  "effect.mcprotein.dextrose": "Dextrose"
 }

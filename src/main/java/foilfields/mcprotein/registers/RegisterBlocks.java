@@ -1,9 +1,6 @@
 package foilfields.mcprotein.registers;
 
-import foilfields.mcprotein.block.CurdBlock;
-import foilfields.mcprotein.block.FishCauldronBlock;
-import foilfields.mcprotein.block.MilkCauldronBlock;
-import foilfields.mcprotein.block.PumpkinBlock;
+import foilfields.mcprotein.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.HorizontalFacingBlock;

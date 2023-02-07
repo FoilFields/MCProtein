@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mcprotein:curd"
+  },
+  "result": "mcprotein:casein_protein",
+  "experience": 0.1,
+  "cookingtime": 200
+}

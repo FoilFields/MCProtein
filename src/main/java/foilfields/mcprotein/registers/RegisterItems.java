@@ -5,6 +5,7 @@ import foilfields.mcprotein.items.FishOilBottleItem;
 import foilfields.mcprotein.items.MilkBottleItem;
 import foilfields.mcprotein.items.SwoleFood;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -18,11 +19,16 @@ import static foilfields.mcprotein.registers.RegisterFluids.STILL_WHEY;
 public class RegisterItems {
     public static final FoodComponent SNORT = new FoodComponent.Builder().hunger(0).saturationModifier(1f).build();
 
-    public static final Item WHEY_PROTEIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_protein"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.PROTEIN, 20 * 60 * 6, 0));
+    public static final Item WHEY_PROTEIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_protein"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.WHEY_PROTEIN, 20 * 60 * 6, 0));
+    public static final Item CASEIN_PROTEIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "casein_protein"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.CASEIN_PROTEIN, 20 * 60 * 6, 0));
     public static final Item CREATINE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "creatine"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.CREATINE, 20 * 60 * 6, 0));
     public static final Item BCAA = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "bcaa"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.BCAA, 20 * 60 * 6, 0));
     public static final Item BEETROOT_EXTRACT = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "beetroot_extract"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.BEETROOT)));
     public static final Item NITRIC_OXIDE_BOOSTER = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "nitric_oxide_booster"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.NITRIC_OXIDE_BOOSTER, 20 * 60 * 6, 0));
+    public static final Item GLUCOSE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "glucose"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.COOKIE)));
+    public static final Item BACTERIA = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "bacteria"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.POISONOUS_POTATO)));
+    public static final Item GLUTAMINE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "glutamine"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.GLUTAMINE, 20 * 60 * 6, 0));
+    public static final Item DEXTROSE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "dextrose"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.DEXTROSE, 20 * 60 * 6, 0));
 
     public static final Item MILK_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "milk_bottle"), new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(MCProtein.MOD_ITEM_GROUP).maxCount(16)));
     public static final Item WHEY_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_bottle"), new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(MCProtein.MOD_ITEM_GROUP).maxCount(16)));

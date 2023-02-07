@@ -66,7 +66,7 @@ public class WheyballEntity extends ThrownItemEntity {
         Entity entity = entityHitResult.getEntity();
 
         if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
-            serverPlayerEntity.addStatusEffect(new StatusEffectInstance(RegisterStatusEffects.PROTEIN, 20 * 20, 0, false, false, true));
+            serverPlayerEntity.addStatusEffect(new StatusEffectInstance(RegisterStatusEffects.WHEY_PROTEIN, 20 * 20, 0, false, false, true));
         }
     }
 
