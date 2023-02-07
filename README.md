@@ -19,10 +19,11 @@ Get SWOLE, fuel your workout routine with the right supplements and push past yo
     - Creatine
     - BCAA
     - Fish oil
-    - Whey protein powder
+    - Whey protein
     - Pre-workout
-    - Vitamin C
-    - Pro Biotics
+    - Glutamine
+    - Nitric Oxide Booster
+    - Casein Protein
 
 ## Screenshots
 
