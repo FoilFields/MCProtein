@@ -24,6 +24,7 @@ Get SWOLE, fuel your workout routine with the right supplements and push past yo
     - Glutamine
     - Nitric Oxide Booster
     - Casein Protein
+    - Glucose
 
 ## Screenshots
 
