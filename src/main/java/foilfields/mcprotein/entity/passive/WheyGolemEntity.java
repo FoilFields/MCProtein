@@ -34,10 +34,21 @@ import org.jetbrains.annotations.Nullable;
  * @author woukie
  */
 public class WheyGolemEntity extends GolemEntity implements RangedAttackMob {
+
+    /**
+     * Default constructor
+     * @param entityType entity type
+     * @param world world
+     */
     public WheyGolemEntity(EntityType<? extends GolemEntity> entityType, World world) {
         super(entityType, world);
     }
 
+    /**
+     * Adds goals to the golem.
+     * <p>Goals are same as default snow golem except priority
+     * increased on target selector and follow speed reduced when attacking.</p>
+     */
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new ProjectileAttackGoal(this, 0.2, 20 * 15, 10.0f));
@@ -47,42 +58,28 @@ public class WheyGolemEntity extends GolemEntity implements RangedAttackMob {
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, 10, true, false, entity -> entity instanceof PlayerEntity));
     }
 
+    /**
+     * Adds the golems attributes
+     * @return builder
+     */
     public static DefaultAttributeContainer.Builder createWheyGolemAttributes() {
         return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f);
     }
 
-    @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-    }
-
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-    }
-
+    /**
+     * Tells the game the golem is hurt by water
+     * @return true always
+     */
     @Override
     public boolean hurtByWater() {
         return true;
     }
 
-    @Override
-    public void tickMovement() {
-        super.tickMovement();
-        if (!this.world.isClient) {
-            BlockPos blockPos = new BlockPos(MathHelper.floor(this.getX()), MathHelper.floor(this.getY()), MathHelper.floor(this.getZ()));
-            Biome biome = this.world.getBiome(blockPos).value();
-            if (biome.isHot(blockPos)) {
-                this.damage(DamageSource.ON_FIRE, 1.0f);
-            }
-        }
-    }
-
+    /**
+     * Handles spawning a snowball that launches at the player
+     * @param target entity to throw at
+     * @param pullProgress pull progress
+     */
     @Override
     public void attack(LivingEntity target, float pullProgress) {
         WheyballEntity projectile = new WheyballEntity(this.world, this);
@@ -96,50 +93,72 @@ public class WheyGolemEntity extends GolemEntity implements RangedAttackMob {
         this.world.spawnEntity(projectile);
     }
 
+    /**
+     * Gets a slightly lower than default eye height to match the model
+     * @param pose entity pose
+     * @param dimensions entities dimensions
+     * @return always 1.7
+     */
     @Override
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return 1.7f;
     }
 
-    @Override
-    protected ActionResult interactMob(PlayerEntity player2, Hand hand) {
-        ItemStack itemStack = player2.getStackInHand(hand);
-        if (itemStack.isOf(RegisterItems.WHEY_PROTEIN)) {
-            this.charge(SoundCategory.PLAYERS);
+//    @Override
+//    protected ActionResult interactMob(PlayerEntity player2, Hand hand) {
+//        ItemStack itemStack = player2.getStackInHand(hand);
+//        if (itemStack.isOf(RegisterItems.WHEY_PROTEIN)) {
+//            this.charge(SoundCategory.PLAYERS);
+//
+//            if (!this.world.isClient) {
+//                itemStack.decrement(1);
+//            }
+//            return ActionResult.success(this.world.isClient);
+//        }
+//        return ActionResult.PASS;
+//    }
+//
+//    public void charge(SoundCategory shearedSoundCategory) {
+//        this.world.playSoundFromEntity(null, this, SoundEvents.BLOCK_TUFF_BREAK, shearedSoundCategory, 1.0f, 1.0f);
+//        if (!this.world.isClient()) {
+//            // Increase charge stat
+//        }
+//    }
 
-            if (!this.world.isClient) {
-                itemStack.decrement(1);
-            }
-            return ActionResult.success(this.world.isClient);
-        }
-        return ActionResult.PASS;
-    }
-
-    public void charge(SoundCategory shearedSoundCategory) {
-        this.world.playSoundFromEntity(null, this, SoundEvents.BLOCK_TUFF_BREAK, shearedSoundCategory, 1.0f, 1.0f);
-        if (!this.world.isClient()) {
-            // Increase charge stat
-        }
-    }
-
+    /**
+     * Gets the ambient sound of the mob
+     * @return Snow golem sound
+     */
     @Override
     @Nullable
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_SNOW_GOLEM_AMBIENT;
     }
 
+    /**
+     * Gets the hurt sound of the mob
+     * @return Snow golem sound
+     */
     @Override
     @Nullable
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_SNOW_GOLEM_HURT;
     }
 
+    /**
+     * Gets the death sound of the mob
+     * @return Snow golem sound
+     */
     @Override
     @Nullable
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_SNOW_GOLEM_DEATH;
     }
 
+    /**
+     * Get the leash offset of the mob
+     * @return Same code as the snow golem
+     */
     @Override
     public Vec3d getLeashOffset() {
         return new Vec3d(0.0, 0.75f * this.getStandingEyeHeight(), this.getWidth() * 0.4f);

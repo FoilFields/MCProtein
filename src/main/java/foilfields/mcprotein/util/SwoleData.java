@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author woukie
  */
 public class SwoleData {
+
     /** Changes a player's stat.
      * <p>Also handles scaling stat increase/decrease. However, all negative values are taken as is.</p>
      * <p>Balanced to around 20 per second of an activity.</p>

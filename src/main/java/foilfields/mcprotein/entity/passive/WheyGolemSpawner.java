@@ -1,9 +1,7 @@
 package foilfields.mcprotein.entity.passive;
 
-import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.registers.RegisterBlocks;
 import foilfields.mcprotein.registers.RegisterEntities;
-import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,6 +24,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * @author woukie
  */
 public class WheyGolemSpawner {
+
+    /**
+     * Checks if the block placed is in a valid configuration to spawn a whey golem.
+     * <p>Spawns a whey golem if the configuration is correct.</p>
+     * @param world world the block is placed in
+     * @param pos position of the placed block
+     * @param state block state of the placed block
+     * @param placer who placed the block
+     * @param itemStack corresponding item stack
+     * @param info info
+     */
     public static void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack, CallbackInfo info) {
         if (state.getBlock() != RegisterBlocks.REINFORCED_CARVED_PUMPKIN) {
             return;

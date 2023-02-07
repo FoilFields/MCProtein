@@ -20,7 +20,9 @@ public class RegisterItems {
 
     public static final Item WHEY_PROTEIN = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_protein"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.PROTEIN, 20 * 60 * 6, 0));
     public static final Item CREATINE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "creatine"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.CREATINE, 20 * 60 * 6, 0));
-    public static final Item MEGA_CREATINE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "mega_creatine"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.CREATINE, 20 * 60 * 6, 1));
+    public static final Item BCAA = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "bcaa"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.BCAA, 20 * 60 * 6, 0));
+    public static final Item BEETROOT_EXTRACT = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "beetroot_extract"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.BEETROOT)));
+    public static final Item NITRIC_OXIDE_BOOSTER = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "nitric_oxide_booster"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.NITRIC_OXIDE_BOOSTER, 20 * 60 * 6, 0));
 
     public static final Item MILK_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "milk_bottle"), new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(MCProtein.MOD_ITEM_GROUP).maxCount(16)));
     public static final Item WHEY_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_bottle"), new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(MCProtein.MOD_ITEM_GROUP).maxCount(16)));

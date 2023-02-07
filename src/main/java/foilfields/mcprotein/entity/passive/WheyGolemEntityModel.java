@@ -21,6 +21,10 @@ public class WheyGolemEntityModel<T extends WheyGolemEntity> extends SnowGolemEn
 	private final ModelPart root;
 	private final ModelPart upperBody;
 
+	/**
+	 * Constructs a whey golem with model parts using the correct name
+	 * @param root models root
+	 */
 	public WheyGolemEntityModel(ModelPart root) {
 		super(root);
 		this.head = root.getChild("head");
@@ -30,6 +34,10 @@ public class WheyGolemEntityModel<T extends WheyGolemEntity> extends SnowGolemEn
 		this.upperBody = root.getChild("upper_body");
 	}
 
+	/**
+	 * Gets the model data with parts arranged to look like a whey golem
+	 * @return textured model data
+	 */
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
@@ -51,6 +59,15 @@ public class WheyGolemEntityModel<T extends WheyGolemEntity> extends SnowGolemEn
 		return TexturedModelData.of(modelData, 64, 64);
 	}
 
+	/**
+	 * Sets the rotation of the golem based on provided values
+	 * @param entity entity reference
+	 * @param limbAngle angle of the entities limbs
+	 * @param limbDistance limbs distance
+	 * @param animationProgress animation progress
+	 * @param headYaw heads yaw rotation
+	 * @param headPitch heads pitch rotation
+	 */
 	@Override
 	public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.head.yaw = headYaw * ((float)Math.PI / 180);
@@ -58,6 +75,17 @@ public class WheyGolemEntityModel<T extends WheyGolemEntity> extends SnowGolemEn
 		this.upperBody.yaw = headYaw * ((float)Math.PI / 180) * 0.25f;
 	}
 
+	/**
+	 * Renders the golem
+	 * @param matrices matrices
+	 * @param vertexConsumer vertex consumer
+	 * @param light light
+	 * @param overlay overlay
+	 * @param red red
+	 * @param green green
+	 * @param blue blue
+	 * @param alpha alpha
+	 */
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		head.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
