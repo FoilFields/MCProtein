@@ -7,16 +7,19 @@ import foilfields.mcprotein.events.ClientPlayConnectionJoin;
 import foilfields.mcprotein.items.FishOilBottleItem;
 import foilfields.mcprotein.items.MilkBottleItem;
 import foilfields.mcprotein.networking.SwoleMessages;
+import foilfields.mcprotein.plants.CustomCrop;
 import foilfields.mcprotein.registers.RegisterCauldrons;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.*;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -41,11 +44,19 @@ public class MCProtein implements ModInitializer {
     public static final Block CURD_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "curd_block"), new CurdBlock(FabricBlockSettings.of(Material.SNOW_LAYER).mapColor(MapColor.YELLOW).noCollision().collidable(false)));
     public static final Item WHEY_PROTEIN_POWDER = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "whey_protein_powder"), new Item(new Item.Settings().group(MOD_ITEM_GROUP)));
 
+    public static final Block BLENDER_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "blender_block"), new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f).requiresTool()));
+    public static final Item BLENDER_ITEM = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "blender_item"), new BlockItem(BLENDER_BLOCK, new FabricItemSettings().group(MOD_ITEM_GROUP)));
+
+    public static final CropBlock CAFFEINE_CROP = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "caffeine_crop_block"), new CustomCrop(AbstractBlock.Settings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.BAMBOO)));
+    public static final Item CAFFEINE_SEED = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "caffeine_seed"), new AliasedBlockItem(MCProtein.CAFFEINE_CROP, new Item.Settings().group(MOD_ITEM_GROUP)));
+
+
     @Override
     public void onInitialize() {
         FuelRegistry.INSTANCE.add(FISH_OIL_BUCKET, 200*32);
 
         BlockRenderLayerMap.INSTANCE.putBlock(MCProtein.CURD_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MCProtein.CAFFEINE_CROP, RenderLayer.getTranslucent());
 
         RegisterCauldrons.register();
         MilkCauldronBlock.register();
