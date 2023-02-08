@@ -1,11 +1,10 @@
 package foilfields.mcprotein.registers;
 
 import foilfields.mcprotein.block.*;
+import foilfields.mcprotein.block.PumpkinBlock;
+import foilfields.mcprotein.plants.CustomCrop;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -29,6 +28,7 @@ public class RegisterBlocks {
     public static final Block NITRIC_OXIDE_BOOSTER_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "nitric_oxide_booster_block"), new Block(FabricBlockSettings.of(Material.SNOW_BLOCK).mapColor(MapColor.PALE_YELLOW).hardness(0.2f).resistance(0.2f).sounds(BlockSoundGroup.SNOW)));
     public static final Block CASEIN_PROTEIN_BLOCK = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "casein_protein_block"), new Block(FabricBlockSettings.of(Material.SNOW_BLOCK).mapColor(MapColor.PALE_YELLOW).hardness(0.2f).resistance(0.2f).sounds(BlockSoundGroup.SNOW)));
 
+    public static final CropBlock CAFFEINE_CROP = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "caffeine_crop_block"), new CustomCrop(AbstractBlock.Settings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.BAMBOO)));
 //    public static final Block CHEESE_WHEEL = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "whey_protein_block"), new Block(FabricBlockSettings.of(Material.SNOW_BLOCK).mapColor(MapColor.PALE_YELLOW).hardness(0.2f).resistance(0.2f).sounds(BlockSoundGroup.SNOW)));
 
     /**

@@ -45,6 +45,7 @@ public class MCProteinClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(RegisterBlocks.CURD_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(RegisterBlocks.GLUCOSE_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(RegisterBlocks.CAFFEINE_CROP, RenderLayer.getTranslucent());
 
         EntityModelLayerRegistry.registerModelLayer(MODEL_WHEY_GOLEM_LAYER, WheyGolemEntityModel::getTexturedModelData);
 

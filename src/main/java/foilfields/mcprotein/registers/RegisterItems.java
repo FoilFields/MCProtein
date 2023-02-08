@@ -4,11 +4,10 @@ import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.items.FishOilBottleItem;
 import foilfields.mcprotein.items.MilkBottleItem;
 import foilfields.mcprotein.items.SwoleFood;
+import foilfields.mcprotein.plants.CustomCrop;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
@@ -58,6 +57,7 @@ public class RegisterItems {
     public static final Item NITRIC_OXIDE_BOOSTER_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "nitric_oxide_booster_block"), new BlockItem(RegisterBlocks.NITRIC_OXIDE_BOOSTER_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item CASEIN_PROTEIN_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "casein_protein_block"), new BlockItem(RegisterBlocks.CASEIN_PROTEIN_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
 
+    public static final Item CAFFEINE_SEED = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "caffeine_seed"), new AliasedBlockItem(RegisterBlocks.CAFFEINE_CROP, new Item.Settings().group(MCProtein.MOD_ITEM_GROUP)));
     /** Registers items.
      * <p>Should be called once when the server initialises.</p>
      */
