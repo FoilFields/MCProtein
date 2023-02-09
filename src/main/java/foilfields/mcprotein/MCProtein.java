@@ -11,12 +11,16 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -57,6 +61,14 @@ public class MCProtein implements ModInitializer {
         RegisterItems.register();
         RegisterStatusEffects.register();
 
+        // Add coffee beans to zombie loot table
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+            if (source.isBuiltin() && EntityType.ZOMBIE.getLootTableId().equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder().with(ItemEntry.builder(RegisterItems.COFFEE_BEAN).weight(1)).with(ItemEntry.builder(Items.AIR).weight(25));
+
+                tableBuilder.pool(poolBuilder);
+            }
+        });
 
 //        ServerPlayConnectionEvents.JOIN.register(new ServerPlayConnectionJoin());
 
