@@ -3,6 +3,8 @@
   "values":
   [
     "mcprotein:fish_oil",
-    "mcprotein:flowing_fish_oil"
+    "mcprotein:flowing_fish_oil",
+    "mcprotein:whey",
+    "mcprotein:flowing_whey"
   ]
 }
