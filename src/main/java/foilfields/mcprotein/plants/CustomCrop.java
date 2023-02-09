@@ -1,6 +1,5 @@
 package foilfields.mcprotein.plants;
 
-import foilfields.mcprotein.MCProtein;
 import foilfields.mcprotein.registers.RegisterItems;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
@@ -26,7 +25,7 @@ public class CustomCrop extends CropBlock {
     }
 
     public ItemConvertible getSeedsItem(){
-        return RegisterItems.CAFFEINE_SEED;
+        return RegisterItems.COFFEE_BEAN;
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "mcprotein:block/coffee_bush_stage_0"
+  }
+}
