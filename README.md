@@ -1,11 +1,10 @@
 # MCProtein
 
 Get SWOLE, fuel your workout routine with the right supplements and push past your limits, to reach new heights of physical and mental strength.
+(MCProtein is a mod about role specification, players get better at the activities they do, and thus will be more suited to doing that role in a group setting)
+
 ## Features
 
-- ### Find workout routines to tailor your workout
-    - Dungeons contain workout routines
-    - Ancient workout routines give you tips for using suplements
 - ### Work out to improve
     - Swimming 
     - Mining
