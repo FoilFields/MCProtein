@@ -29,6 +29,7 @@ public class RegisterItems {
     public static final Item BACTERIA = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "bacteria"), new Item(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(FoodComponents.POISONOUS_POTATO)));
     public static final Item GLUTAMINE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "glutamine"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.GLUTAMINE, 20 * 60 * 6, 0));
     public static final Item DEXTROSE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "dextrose"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.DEXTROSE, 20 * 60 * 6, 0));
+    public static final Item CAFFEINE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "caffeine"), new SwoleFood(new Item.Settings().group(MCProtein.MOD_ITEM_GROUP).food(SNORT), RegisterStatusEffects.CAFFEINE, 20 * 60 * 6, 0));
 
     public static final Item MILK_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "milk_bottle"), new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(MCProtein.MOD_ITEM_GROUP).maxCount(16)));
     public static final Item WHEY_BOTTLE = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "whey_bottle"), new MilkBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).group(MCProtein.MOD_ITEM_GROUP).maxCount(16)));
@@ -47,6 +48,7 @@ public class RegisterItems {
     public static final Item GLUCOSE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MCProtein.MOD_ID, "glucose_block"), new BlockItem(RegisterBlocks.GLUCOSE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
 
     public static final Item BCAA_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bcaa_block"), new BlockItem(RegisterBlocks.BCAA_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
+    public static final Item CAFFEINE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "caffeine_block"), new BlockItem(RegisterBlocks.CAFFEINE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item DEXTROSE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "dextrose_block"), new BlockItem(RegisterBlocks.DEXTROSE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item GLUTAMINE_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "glutamine_block"), new BlockItem(RegisterBlocks.GLUTAMINE_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));
     public static final Item NITRIC_OXIDE_BOOSTER_BLOCK = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "nitric_oxide_booster_block"), new BlockItem(RegisterBlocks.NITRIC_OXIDE_BOOSTER_BLOCK, new FabricItemSettings().group(MCProtein.MOD_ITEM_GROUP)));

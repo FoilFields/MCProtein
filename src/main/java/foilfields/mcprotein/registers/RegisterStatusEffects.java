@@ -18,6 +18,7 @@ public class RegisterStatusEffects {
     public static StatusEffect NITRIC_OXIDE_BOOSTER = new SwoleEffect();
     public static StatusEffect GLUTAMINE = new SwoleEffect();
     public static StatusEffect DEXTROSE = new SwoleEffect();
+    public static StatusEffect CAFFEINE = new SwoleEffect();
 
     /** Registers status effects.
      * <p>Should be called once when the server initialises.</p>
@@ -30,5 +31,6 @@ public class RegisterStatusEffects {
         NITRIC_OXIDE_BOOSTER = Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "nitric_oxide_booster"), NITRIC_OXIDE_BOOSTER);
         GLUTAMINE = Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "glutamine"), GLUTAMINE);
         DEXTROSE = Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "dextrose"), DEXTROSE);
+        CAFFEINE = Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "caffeine"), CAFFEINE);
     }
 }

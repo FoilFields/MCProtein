@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mcprotein:caffeine"
+    }
+  },
+  "result": {
+    "item": "mcprotein:caffeine_block",
+    "count": 1
+  }
+}
